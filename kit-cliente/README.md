@@ -11,7 +11,8 @@ redes/        calendario y piezas de redes sociales
 video/        guiones de vídeo
 campanas/     campañas
 assets/       logos, tipografías, fotos del cliente
-herramientas/ brand book (PDF), auditoría web, presupuestos
+herramientas/ brand book (PDF), auditoría web, presupuestos, entrega y lanzamiento
+ENTREGAS.md  historial de entregas (versiones)
 ```
 
 ## Cómo trabajar
@@ -30,3 +31,10 @@ node herramientas/auditoria-web.mjs web/index.html     # SEO, accesibilidad y re
 node herramientas/presupuesto.mjs partidas.csv --cliente "{{CLIENTE}}"
 ```
 Necesitan Playwright: `npm i -D playwright && npx playwright install chromium`.
+
+## Entregas y lanzamiento
+```bash
+herramientas/entrega.sh v1.0.0 "Web + brand book"   # crea la versión; luego: git push origin HEAD && git push origin v1.0.0
+herramientas/lanzar.sh https://dominio.com          # quita el noindex de la demo y publica
+```
+La demo está en `noindex` hasta lanzar. Cada entrega genera una *release* en GitHub.

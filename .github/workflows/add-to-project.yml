@@ -1,0 +1,17 @@
+name: Añadir al tablero
+# Opcional: actívalo definiendo la variable de repo PROJECT_URL (https://github.com/users/<tu-usuario>/projects/N)
+# y el secreto ADD_TO_PROJECT_PAT (token con permiso "project").
+on:
+  issues:
+    types: [opened, reopened]
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  add:
+    if: ${{ vars.PROJECT_URL != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: ${{ vars.PROJECT_URL }}
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}

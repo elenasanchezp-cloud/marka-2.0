@@ -86,3 +86,11 @@ El `CLAUDE.md` de cada repo obliga a leer `BRAND.md` antes de producir nada y a 
 
 Requieren Node y Playwright con Chromium (`npm i -D playwright && npx playwright install chromium`) para generar PDF/auditar.
 Cada repo de cliente los incluye en `herramientas/`.
+
+## Gestión y portfolio
+Tablero, etiquetas, releases por entrega, demos privadas en Vercel y casos de portfolio: ver [`docs/GESTION.md`](docs/GESTION.md).
+
+```bash
+herramientas/entrega.sh v1.0.0 "Web + brand book"     # entrega = versión etiquetada
+herramientas/lanzar.sh https://dominio-cliente.com    # demo noindex -> web pública
+```
