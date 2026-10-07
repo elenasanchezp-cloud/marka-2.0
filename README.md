@@ -74,3 +74,15 @@ scripts/nuevo-cliente.sh cafe-norte "Café Norte" hola@cafenorte.es   # -> clien
 6. Si la marca evoluciona, se actualiza `BRAND.md` primero.
 
 El `CLAUDE.md` de cada repo obliga a leer `BRAND.md` antes de producir nada y a no inventar datos del cliente.
+
+## Servicios: herramientas listas para vender
+
+| Servicio | Herramienta | Uso |
+|---|---|---|
+| **Brand book** | `kit-cliente/herramientas/brandbook.mjs` | `node kit-cliente/herramientas/brandbook.mjs BRAND.md brandbook` → HTML + PDF maquetado con la paleta del propio cliente |
+| **Auditoría SEO / accesibilidad / rendimiento** | `kit-cliente/herramientas/auditoria-web.mjs` | `node kit-cliente/herramientas/auditoria-web.mjs <url o index.html>` — resultado de MARKA en [`docs/AUDITORIA-MARKA.md`](docs/AUDITORIA-MARKA.md) |
+| **Propuestas y presupuestos** | `agencia/propuestas/` + `presupuesto.mjs` | Plantilla de propuesta y presupuesto en PDF con IVA/IRPF calculado (los precios los pones tú) |
+| **Redes** | `kit-cliente/redes/` | Calendario en MD y `calendario.csv` (importable en Notion) + plantilla de pieza que parte de los pilares de `BRAND.md` |
+
+Requieren Node y Playwright con Chromium (`npm i -D playwright && npx playwright install chromium`) para generar PDF/auditar.
+Cada repo de cliente los incluye en `herramientas/`.

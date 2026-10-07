@@ -11,6 +11,7 @@ redes/        calendario y piezas de redes sociales
 video/        guiones de vídeo
 campanas/     campañas
 assets/       logos, tipografías, fotos del cliente
+herramientas/ brand book (PDF), auditoría web, presupuestos
 ```
 
 ## Cómo trabajar
@@ -21,3 +22,11 @@ assets/       logos, tipografías, fotos del cliente
 
 ## Web
 Vercel: Root Directory = `web`. Ver en local: `cd web && python3 -m http.server 8000`.
+
+## Herramientas
+```bash
+node herramientas/brandbook.mjs BRAND.md brandbook     # brand book HTML + PDF con la paleta del cliente
+node herramientas/auditoria-web.mjs web/index.html     # SEO, accesibilidad y rendimiento
+node herramientas/presupuesto.mjs partidas.csv --cliente "{{CLIENTE}}"
+```
+Necesitan Playwright: `npm i -D playwright && npx playwright install chromium`.

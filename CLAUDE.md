@@ -18,3 +18,6 @@ Web estática de una página (`index.html`). Sigue `BRAND.md` siempre.
 - No inventes datos del cliente (precios, direcciones, testimonios, cifras). Si falta, pregunta o marca `[PENDIENTE]`.
 - No mezcles la marca MARKA con la del cliente salvo el crédito del pie ("Web por MARKA").
 - Las imágenes del cliente van en `web/img/` en `.webp`.
+- Tras entregar una web: pasa `herramientas/auditoria-web.mjs` y corrige los errores antes de dar la web por terminada.
+- Brand book: se genera siempre desde `BRAND.md` con `herramientas/brandbook.mjs`; si hay campos "pendiente", pídelos antes.
+- Presupuestos y propuestas: nunca inventes precios; los pone Elena en el CSV. Plantillas en `agencia/propuestas/`.
