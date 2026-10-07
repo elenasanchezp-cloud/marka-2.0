@@ -1,2 +1,46 @@
-# marka-2.0
-generacion de webs creativas para marka 
+# MARKA — Estudio creativo
+
+> No hacemos logos. Hacemos markas.
+
+Web de **MARKA**, estudio creativo de branding, redes, vídeo y campañas.
+Sitio estático de una sola página (HTML + CSS + JS inline; GSAP y Lenis por CDN).
+
+- **Producción:** https://marka-estudio.vercel.app/
+- **Instagram:** https://www.instagram.com/marka.studio/
+- **Contacto:** markastudio20@gmail.com
+
+## Estructura
+
+```
+index.html     la web completa (estilos y scripts inline)
+icon.svg       favicon / símbolo K
+img/           imágenes .webp de los materiales
+vercel.json    caché y cabeceras
+robots.txt, sitemap.xml
+BRAND.md       sistema de marca (colores, tipografía, tono)
+CLAUDE.md      reglas para generar/editar webs con Claude
+```
+
+## Ver en local
+
+```bash
+python3 -m http.server 8000   # y abre http://localhost:8000
+```
+
+## Flujo de trabajo
+
+1. `main` = lo que está publicado.
+2. Cada cambio o web nueva va en su propia rama (`web/cliente-x`, `mejora/home`).
+3. Abre un Pull Request: Vercel genera una **URL de vista previa** para enseñarla antes de publicar.
+4. Al fusionar en `main`, se publica solo.
+5. Tareas e ideas en **Issues** (hay plantillas); el tablero en **Projects**.
+
+## Publicar
+
+- **Vercel (actual):** importa el repo, sin build, directorio raíz. Despliegue automático.
+- **GitHub Pages (alternativa):** Settings → Pages → Deploy from branch `main` / root.
+
+## Nueva web para un cliente
+
+Usa este repo como plantilla (Settings → *Template repository*), cambia textos en `index.html`,
+adapta los tokens de color de `:root` y sigue `BRAND.md` / `CLAUDE.md`.

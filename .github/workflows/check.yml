@@ -1,0 +1,22 @@
+name: Comprobar web
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar que existe index.html
+        run: |
+          test -f index.html
+      - name: Comprobar que las imágenes referenciadas existen
+        run: |
+          missing=0
+          for f in $(grep -oE 'img/[A-Za-z0-9_.-]+\.(webp|png|jpg|svg)' index.html | sort -u); do
+            [ -f "$f" ] || { echo "Falta $f"; missing=1; }
+          done
+          exit $missing
+      - name: Peso de imágenes (aviso >150KB)
+        run: find img -type f -size +150k -print | sed 's/^/Pesada: /' || true
