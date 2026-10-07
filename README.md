@@ -41,21 +41,36 @@ python3 -m http.server 8000   # y abre http://localhost:8000
 - **GitHub Pages (alternativa):** Settings → Pages → Deploy from branch `main` / root.
 
 
-## Máquina de webs para clientes
+## Máquina de clientes
+
+Cada cliente tiene su sistema de marca por escrito (`BRAND.md`) y todo lo que se produce parte de él:
+web, redes, guiones de vídeo y campañas, sin repetir el briefing.
 
 ```
-plantilla/            web base genérica (tokens de color en :root, secciones listas)
-clientes/_plantilla/  BRIEFING.md y BRAND.md vacíos
-clientes/<slug>/      un cliente: BRIEFING.md, BRAND.md, assets/ y web/
-scripts/nuevo-cliente.sh
+kit-cliente/    kit completo: BRIEFING, BRAND, CLAUDE.md, redes/, video/, campanas/, assets/, CI
+plantilla/      web base genérica (tokens de color en :root)
+clientes/       clientes alojados en este repo (opcional)
+scripts/        nuevo-repo-cliente.sh · nuevo-cliente.sh
 ```
 
-Flujo:
+### Opción A — un repo por cliente (recomendada)
+```bash
+scripts/nuevo-repo-cliente.sh cafe-norte "Café Norte" hola@cafenorte.es
+```
+Crea `../marka-cafe-norte` con git iniciado. Súbelo a un repo **privado** de GitHub (el script te da los comandos).
+Ventajas: el cliente puede tener acceso solo a lo suyo, su historial es propio y entregas el código sin mezclar nada.
 
-1. `scripts/nuevo-cliente.sh cafe-norte "Café Norte" hola@cafenorte.es`
-2. Rellena `clientes/cafe-norte/BRIEFING.md` (con el cliente) y `BRAND.md`.
-3. Pide a Claude: *"genera la web de clientes/cafe-norte a partir del briefing"*. Rellena los `{{...}}`, adapta paleta, tipografía y tono, y crea las secciones.
-4. Rama `web/cafe-norte` → Pull Request → vista previa de Vercel para enseñársela al cliente.
-5. Entrega: proyecto de Vercel nuevo con **Root Directory = `clientes/cafe-norte/web`** y el dominio del cliente.
+### Opción B — dentro de este repo
+```bash
+scripts/nuevo-cliente.sh cafe-norte "Café Norte" hola@cafenorte.es   # -> clientes/cafe-norte/
+```
 
-Si el cliente quiere el código aparte, copia `clientes/<slug>/web` a un repo propio.
+### Flujo con cada cliente
+1. Crear el repo/carpeta con el script.
+2. Rellenar `BRIEFING.md` y `BRAND.md` con el cliente (una sola vez).
+3. Pedir a Claude, siempre con la misma fórmula: *"Siguiendo BRAND.md, haz [la web / 10 posts de redes / un guion de 30 s / una campaña de X]"*.
+4. Rama por entrega → Pull Request → vista previa de Vercel (web) → aprobación del cliente.
+5. Web: proyecto de Vercel con Root Directory = `web` (o `clientes/<slug>/web` en la opción B).
+6. Si la marca evoluciona, se actualiza `BRAND.md` primero.
+
+El `CLAUDE.md` de cada repo obliga a leer `BRAND.md` antes de producir nada y a no inventar datos del cliente.

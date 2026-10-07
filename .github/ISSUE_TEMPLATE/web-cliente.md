@@ -14,7 +14,7 @@ labels: cliente
 **Fecha de entrega**
 
 **Checklist**
-- [ ] `scripts/nuevo-cliente.sh <slug> "<Nombre>"`
+- [ ] `scripts/nuevo-repo-cliente.sh <slug> "<Nombre>" (o nuevo-cliente.sh)`
 - [ ] BRIEFING.md y BRAND.md rellenados
 - [ ] Web generada y revisada (móvil + escritorio)
 - [ ] Vista previa enviada al cliente
