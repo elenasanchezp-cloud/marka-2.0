@@ -27,4 +27,5 @@ jobs:
           fi
           exit $missing
       - name: Peso de imágenes (aviso >150KB)
-        run: find img clientes -type f -size +150k -print | sed 's/^/Pesada: /' || true
+        run: |
+          find img clientes -type f -size +150k -print | sed 's/^/Pesada: /' || true
