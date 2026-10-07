@@ -1,0 +1,14 @@
+[
+  {"name":"cliente","color":"1A1A1A","description":"Trabajo para un cliente"},
+  {"name":"entrega","color":"0E8A16","description":"Pieza o paquete a entregar"},
+  {"name":"web","color":"1D76DB","description":"Sitio web"},
+  {"name":"redes","color":"E99695","description":"Redes sociales"},
+  {"name":"video","color":"D93F0B","description":"Vídeo y edición"},
+  {"name":"branding","color":"5319E7","description":"Marca, brand book, identidad"},
+  {"name":"campaña","color":"FBCA04","description":"Campañas creativas"},
+  {"name":"propuesta","color":"C5DEF5","description":"Propuestas y presupuestos"},
+  {"name":"bloqueado","color":"B60205","description":"Esperando al cliente o a un tercero"},
+  {"name":"revisión-cliente","color":"F9D0C4","description":"Enviado al cliente, pendiente de feedback"},
+  {"name":"mejora","color":"A2EEEF","description":"Mejora interna del estudio"},
+  {"name":"seo","color":"BFD4F2","description":"SEO, accesibilidad, rendimiento"}
+]

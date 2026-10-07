@@ -1,0 +1,22 @@
+name: Comprobar
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Web sin placeholders ni imágenes rotas
+        run: |
+          [ -f web/index.html ] || exit 0
+          bad=0
+          grep -l '{{[A-Z_]*}}' web/index.html && { echo "Placeholders {{...}} sin rellenar"; bad=1; }
+          for f in $(grep -oE 'img/[A-Za-z0-9_.-]+\.(webp|png|jpg|svg)' web/index.html | sort -u); do
+            [ -f "web/$f" ] || { echo "Falta web/$f"; bad=1; }
+          done
+          exit $bad
+      - name: BRAND.md completo (aviso)
+        run: |
+          grep -c '^- \*\*[^*]*:\*\*\s*$' BRAND.md | sed 's/^/Campos vacíos en BRAND.md: /' || true

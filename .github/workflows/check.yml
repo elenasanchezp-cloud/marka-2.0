@@ -1,0 +1,30 @@
+name: Comprobar web
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar que existe index.html
+        run: |
+          test -f index.html
+      - name: Comprobar imágenes referenciadas y placeholders sin rellenar
+        run: |
+          missing=0
+          for page in index.html clientes/*/web/index.html; do
+            [ -f "$page" ] || continue
+            dir=$(dirname "$page")
+            for f in $(grep -oE 'img/[A-Za-z0-9_.-]+\.(webp|png|jpg|svg)' "$page" | sort -u); do
+              [ -f "$dir/$f" ] || { echo "Falta $dir/$f"; missing=1; }
+            done
+          done
+          # una web de cliente no puede publicarse con {{...}} sin sustituir
+          if grep -rl '{{[A-Z_]*}}' clientes/*/web/index.html 2>/dev/null; then
+            echo "Hay placeholders {{...}} sin rellenar"; missing=1
+          fi
+          exit $missing
+      - name: Peso de imágenes (aviso >150KB)
+        run: find img clientes -type f -size +150k -print | sed 's/^/Pesada: /' || true
