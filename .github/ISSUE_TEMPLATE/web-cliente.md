@@ -3,8 +3,19 @@ name: Nueva web de cliente
 about: Arrancar un proyecto de web para un cliente
 labels: cliente
 ---
-**Cliente**
+**Cliente / slug** (ej. Café Norte / `cafe-norte`)
+
 **Objetivo de la web**
+
 **Secciones**
+
 **Referencias / moodboard**
+
 **Fecha de entrega**
+
+**Checklist**
+- [ ] `scripts/nuevo-cliente.sh <slug> "<Nombre>"`
+- [ ] BRIEFING.md y BRAND.md rellenados
+- [ ] Web generada y revisada (móvil + escritorio)
+- [ ] Vista previa enviada al cliente
+- [ ] Proyecto Vercel con Root Directory `clientes/<slug>/web` y dominio
