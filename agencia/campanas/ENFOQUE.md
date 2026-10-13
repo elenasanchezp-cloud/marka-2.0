@@ -36,6 +36,9 @@ Embudo común (el de El Ring): **Atraer → Captar → Convencer → Cerrar → 
 - **Diciembre:** Navidad (Edición Navidad, Navidad de Empresa).
 - **Enero:** Empieza 2027 con Marca.
 
+## Ganchos
+Los tres ganchos son **gratis** y se preparan con [`../ganchos/`](../ganchos/README.md): ficha de 5 minutos y Claude genera el entregable.
+
 ## Campañas de lanzamiento
 - [`CAMPANA-MARCA.md`](CAMPANA-MARCA.md)
 - [`CAMPANA-EMPRESA.md`](CAMPANA-EMPRESA.md)
