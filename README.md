@@ -7,7 +7,6 @@ Sitio estático de una sola página (HTML + CSS + JS inline; GSAP y Lenis por CD
 
 - **Producción:** https://marka-estudio.vercel.app/
 - **El Plató de MARKA** (calendario, guiones y métricas de campañas): https://claude.ai/artifact/Q3UYhiDue8dgG3om5Lowmn
-- **El Ring de MARKA** (embudo de clientes, facturación y documentos): https://claude.ai/artifact/53o93ipWgFWZFpQo7yeAgH
 - **Instagram:** https://www.instagram.com/marka.studio/
 - **Contacto:** markastudio20@gmail.com
 
@@ -93,11 +92,6 @@ Cada repo de cliente los incluye en `herramientas/`.
 Panel interno con tres salas: **Calendario**, **Guiones** y **Métricas**. Es el espacio de trabajo de las campañas, junto a la plantilla `kit-cliente/campanas/CAMPANA-PLANTILLA.md`.
 
 👉 [Abrir El Plató de MARKA](https://claude.ai/artifact/Q3UYhiDue8dgG3om5Lowmn)
-
-## Clientes y facturación: El Ring de MARKA
-Panel interno con el embudo de clientes (kanban por fases), la facturación y los documentos. Se conecta con Holded.
-
-👉 [Abrir El Ring de MARKA](https://claude.ai/artifact/53o93ipWgFWZFpQo7yeAgH)
 
 ## Gestión y portfolio
 Tablero, etiquetas, releases por entrega, demos privadas en Vercel y casos de portfolio: ver [`docs/GESTION.md`](docs/GESTION.md).
