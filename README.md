@@ -6,6 +6,7 @@ Web de **MARKA**, estudio creativo de branding, redes, vídeo y campañas.
 Sitio estático de una sola página (HTML + CSS + JS inline; GSAP y Lenis por CDN).
 
 - **Producción:** https://marka-estudio.vercel.app/
+- **El Plató de MARKA** (calendario, guiones y métricas de campañas): https://claude.ai/artifact/Q3UYhiDue8dgG3om5Lowmn
 - **Instagram:** https://www.instagram.com/marka.studio/
 - **Contacto:** markastudio20@gmail.com
 
@@ -86,6 +87,11 @@ El `CLAUDE.md` de cada repo obliga a leer `BRAND.md` antes de producir nada y a 
 
 Requieren Node y Playwright con Chromium (`npm i -D playwright && npx playwright install chromium`) para generar PDF/auditar.
 Cada repo de cliente los incluye en `herramientas/`.
+
+## Campañas: El Plató de MARKA
+Panel interno con tres salas: **Calendario**, **Guiones** y **Métricas**. Es el espacio de trabajo de las campañas, junto a la plantilla `kit-cliente/campanas/CAMPANA-PLANTILLA.md`.
+
+👉 [Abrir El Plató de MARKA](https://claude.ai/artifact/Q3UYhiDue8dgG3om5Lowmn)
 
 ## Gestión y portfolio
 Tablero, etiquetas, releases por entrega, demos privadas en Vercel y casos de portfolio: ver [`docs/GESTION.md`](docs/GESTION.md).
