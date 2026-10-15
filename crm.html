@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRM — MARKA</title>
+<meta name="description" content="Agenda de contactos de MARKA: nombre, teléfono y Gmail.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+:root{
+--arena:#D9D5CC; --piedra:#B7AEA4; --carbon:#1A1A1A; --hueso:#F4F1EB;
+--carbon-2:#222120; --line-d:rgba(244,241,235,.14);
+--display:"Neue Montreal","Hanken Grotesk",system-ui,sans-serif;
+--body:"Inter",system-ui,sans-serif;
+--pad:clamp(20px,4vw,64px);
+--ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--carbon);color:var(--hueso);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+main{max-width:1100px;margin:0 auto;padding:clamp(32px,6vw,80px) var(--pad)}
+h1{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:-.045em;line-height:.88;font-size:clamp(48px,10vw,120px);margin-bottom:12px}
+.lead{color:var(--piedra);margin-bottom:40px}
+.label{font-size:11px;text-transform:uppercase;letter-spacing:.24em;color:var(--piedra)}
+section{border-top:1px solid var(--line-d);padding:32px 0}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;align-items:end}
+label{display:grid;gap:8px}
+input{background:var(--carbon-2);color:var(--hueso);border:1px solid var(--line-d);border-radius:0;padding:12px 14px;font:inherit;width:100%}
+input::placeholder{color:var(--piedra)}
+button,.btn{background:var(--hueso);color:var(--carbon);border:1px solid var(--hueso);padding:12px 20px;font:500 11px var(--body);text-transform:uppercase;letter-spacing:.24em;cursor:pointer;transition:background .4s var(--ease),color .4s var(--ease);display:inline-block;text-align:center}
+button:hover,.btn:hover{background:transparent;color:var(--hueso)}
+button.sec,.btn.sec{background:transparent;color:var(--hueso);border-color:var(--line-d)}
+button.sec:hover,.btn.sec:hover{border-color:var(--hueso)}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--hueso);outline-offset:3px}
+.bar{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:end;margin-bottom:20px}
+.bar .search{flex:1 1 240px}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+table{width:100%;border-collapse:collapse}
+th{font-weight:400;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-d)}
+td{padding:14px 12px;border-bottom:1px solid var(--line-d);vertical-align:top;overflow-wrap:anywhere}
+td a{color:var(--hueso);text-decoration-color:var(--piedra);text-underline-offset:3px}
+td.row-acts{white-space:nowrap}
+td.row-acts button{padding:8px 12px;margin-left:4px}
+.empty{color:var(--piedra);padding:24px 0}
+.count{color:var(--piedra)}
+.err{color:var(--arena);min-height:1.5em;margin-top:12px}
+@media (max-width:640px){
+ thead{position:absolute;left:-9999px}
+ tr{display:block;border-bottom:1px solid var(--line-d);padding:12px 0}
+ td{display:block;border:0;padding:4px 0}
+ td[data-l]::before{content:attr(data-l);display:block;font-size:11px;text-transform:uppercase;letter-spacing:.24em;color:var(--piedra)}
+ td.row-acts button{margin:8px 8px 0 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+ <h1>CRM</h1>
+ <p class="lead">Tus contactos, con teléfono y Gmail. Se guardan solo en este navegador.</p>
+
+ <section aria-label="Añadir contacto">
+  <form id="f" novalidate>
+   <label><span class="label">Nombre</span><input id="nombre" required autocomplete="off" placeholder="Nombre y apellidos"></label>
+   <label><span class="label">Teléfono</span><input id="tel" type="tel" required autocomplete="off" placeholder="+34 600 000 000"></label>
+   <label><span class="label">Gmail</span><input id="mail" type="email" required autocomplete="off" placeholder="nombre@gmail.com"></label>
+   <label><span class="label">Notas</span><input id="notas" autocomplete="off" placeholder="Opcional"></label>
+   <div class="acts"><button id="guardar" type="submit">Guardar</button><button id="cancelar" class="sec" type="button" hidden>Cancelar</button></div>
+  </form>
+  <p class="err" id="err" role="alert"></p>
+ </section>
+
+ <section aria-label="Lista de contactos">
+  <div class="bar">
+   <label class="search"><span class="label">Buscar</span><input id="q" type="search" placeholder="Nombre, teléfono o correo"></label>
+   <div class="acts">
+    <button id="exp" class="sec" type="button">Exportar CSV</button>
+    <label class="btn sec" for="imp">Importar CSV</label>
+    <input id="imp" type="file" accept=".csv,text/csv" hidden>
+   </div>
+  </div>
+  <p class="count" id="count" aria-live="polite"></p>
+  <table>
+   <thead><tr><th scope="col">Nombre</th><th scope="col">Teléfono</th><th scope="col">Gmail</th><th scope="col">Notas</th><th scope="col"><span class="label">Acciones</span></th></tr></thead>
+   <tbody id="rows"></tbody>
+  </table>
+  <p class="empty" id="empty" hidden>Aún no hay contactos.</p>
+ </section>
+</main>
+
+<script>
+(function(){
+ var KEY='marka-crm-contactos', data=[], editId=null;
+ var $=function(i){return document.getElementById(i)};
+
+ function load(){try{data=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){data=[]}}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){$('err').textContent='No se pudo guardar en este navegador.'}}
+ function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+
+ function cell(tr,label,child){var td=document.createElement('td');td.setAttribute('data-l',label);td.appendChild(child);tr.appendChild(td);return td}
+ function txt(s){return document.createTextNode(s||'')}
+ function link(href,s){var a=document.createElement('a');a.href=href;a.textContent=s;return a}
+ function btn(s,cls,fn){var b=document.createElement('button');b.type='button';b.textContent=s;if(cls)b.className=cls;b.addEventListener('click',fn);return b}
+
+ function render(){
+  var q=$('q').value.trim().toLowerCase(), body=$('rows');
+  body.textContent='';
+  var list=data.filter(function(c){return !q||(c.nombre+' '+c.tel+' '+c.mail+' '+c.notas).toLowerCase().indexOf(q)>-1});
+  list.sort(function(a,b){return a.nombre.localeCompare(b.nombre,'es')});
+  list.forEach(function(c){
+   var tr=document.createElement('tr');
+   cell(tr,'Nombre',txt(c.nombre));
+   cell(tr,'Teléfono',link('tel:'+c.tel.replace(/[^\d+]/g,''),c.tel));
+   cell(tr,'Gmail',link('mailto:'+c.mail,c.mail));
+   cell(tr,'Notas',txt(c.notas));
+   var td=document.createElement('td');td.className='row-acts';
+   td.appendChild(btn('Editar','sec',function(){edit(c.id)}));
+   td.appendChild(btn('Borrar','sec',function(){del(c.id)}));
+   tr.appendChild(td);body.appendChild(tr);
+  });
+  $('count').textContent=data.length?list.length+' de '+data.length+' contactos':'';
+  $('empty').hidden=data.length>0;
+ }
+
+ function reset(){editId=null;$('f').reset();$('guardar').textContent='Guardar';$('cancelar').hidden=true;$('err').textContent=''}
+ function edit(id){
+  var c=data.find(function(x){return x.id===id});if(!c)return;
+  editId=id;$('nombre').value=c.nombre;$('tel').value=c.tel;$('mail').value=c.mail;$('notas').value=c.notas;
+  $('guardar').textContent='Actualizar';$('cancelar').hidden=false;$('nombre').focus();
+ }
+ function del(id){
+  var c=data.find(function(x){return x.id===id});
+  if(c&&confirm('¿Borrar a '+c.nombre+'?')){data=data.filter(function(x){return x.id!==id});save();render();if(editId===id)reset()}
+ }
+
+ $('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var n=$('nombre').value.trim(), t=$('tel').value.trim(), m=$('mail').value.trim(), no=$('notas').value.trim();
+  if(!n||!t||!m){$('err').textContent='Rellena nombre, teléfono y Gmail.';return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){$('err').textContent='El correo no es válido.';return}
+  if(!/^\+?[\d\s().-]{6,}$/.test(t)){$('err').textContent='El teléfono no es válido.';return}
+  var dup=data.some(function(c){return c.id!==editId&&c.mail.toLowerCase()===m.toLowerCase()});
+  if(dup){$('err').textContent='Ya existe un contacto con ese correo.';return}
+  if(editId){var c=data.find(function(x){return x.id===editId});c.nombre=n;c.tel=t;c.mail=m;c.notas=no}
+  else data.push({id:uid(),nombre:n,tel:t,mail:m,notas:no});
+  save();reset();render();$('nombre').focus();
+ });
+ $('cancelar').addEventListener('click',reset);
+ $('q').addEventListener('input',render);
+
+ function esc(s){s=String(s||'');return /[",\n;]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s}
+ $('exp').addEventListener('click',function(){
+  var rows=[['nombre','telefono','gmail','notas']].concat(data.map(function(c){return [c.nombre,c.tel,c.mail,c.notas]}));
+  var csv='﻿'+rows.map(function(r){return r.map(esc).join(',')}).join('\r\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='contactos.csv';document.body.appendChild(a);a.click();a.remove();
+ });
+
+ function parseCSV(s){
+  var rows=[],r=[],f='',q=false,i,ch;
+  s=s.replace(/^﻿/,'');
+  var sep=(s.split('\n')[0].match(/;/g)||[]).length>(s.split('\n')[0].match(/,/g)||[]).length?';':',';
+  for(i=0;i<s.length;i++){ch=s[i];
+   if(q){if(ch==='"'){if(s[i+1]==='"'){f+='"';i++}else q=false}else f+=ch}
+   else if(ch==='"')q=true;
+   else if(ch===sep){r.push(f);f=''}
+   else if(ch==='\n'||ch==='\r'){if(ch==='\r'&&s[i+1]==='\n')i++;r.push(f);rows.push(r);r=[];f=''}
+   else f+=ch}
+  if(f||r.length){r.push(f);rows.push(r)}
+  return rows;
+ }
+ $('imp').addEventListener('change',function(e){
+  var file=e.target.files[0];if(!file)return;
+  var rd=new FileReader();
+  rd.onload=function(){
+   var rows=parseCSV(String(rd.result)), added=0;
+   rows.slice(1).forEach(function(r){
+    var n=(r[0]||'').trim(), t=(r[1]||'').trim(), m=(r[2]||'').trim();
+    if(!n||!t||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m))return;
+    if(data.some(function(c){return c.mail.toLowerCase()===m.toLowerCase()}))return;
+    data.push({id:uid(),nombre:n,tel:t,mail:m,notas:(r[3]||'').trim()});added++;
+   });
+   save();render();$('err').textContent=added+' contactos importados.';
+  };
+  rd.readAsText(file);e.target.value='';
+ });
+
+ load();render();
+})();
+</script>
+</body>
+</html>
