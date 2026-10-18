@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Somos MARKA · Elena y Aitana</title>
+<link rel="stylesheet" href="../motor/base.css">
+<style>
+body,.lienzo{background:var(--arena)}
+#gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.pal{position:absolute;left:0;right:0;text-align:center}
+.capa{position:absolute;inset:0}
+#detras .gig{position:absolute;left:0;right:0;text-align:center;color:var(--carbon);font-size:300px;letter-spacing:-.02em;line-height:.85}
+#gancho{color:var(--carbon)}
+.chip{position:absolute;padding:14px 26px 12px;background:var(--carbon);color:var(--hueso);white-space:nowrap}
+.pega{position:absolute;padding:20px 30px 16px;font-size:58px;white-space:nowrap;border:4px solid var(--carbon)}
+.pega.o{background:var(--carbon);color:var(--hueso)} .pega.c{background:var(--hueso);color:var(--carbon)}
+#subs{position:absolute;left:90px;right:170px;top:1390px;text-align:center}
+#subs span{display:inline-block;font:800 72px/1.16 'Inter',sans-serif;color:var(--hueso);margin:0 .12em;padding:0 .1em;letter-spacing:-.02em;-webkit-text-stroke:14px var(--carbon);paint-order:stroke fill}
+#subs span.on{background:var(--carbon);-webkit-text-stroke:0}
+#quien{position:absolute;left:0;right:0;top:1300px;text-align:center}
+#quien b{display:inline-block;background:var(--hueso);color:var(--carbon);padding:10px 22px 8px}
+#tl{position:absolute;left:150px;top:300px;width:620px;height:170px}
+#kdib{position:absolute;left:690px;top:250px;width:250px;height:251px}
+.sello{position:absolute;padding:18px 26px 14px;border:5px solid var(--carbon);color:var(--carbon);background:rgba(244,241,235,.9);font-size:40px;white-space:nowrap}
+#cta{background:var(--hueso);color:var(--carbon)}
+#fin{background:var(--carbon);color:var(--hueso)}
+</style></head>
+<body><div class="lienzo">
+<div class="capa" id="detras">
+  <div class="gig d" id="gMarka" style="top:330px">MARKA</div>
+</div>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div class="capa" id="delante">
+  <div class="pal et" id="g0" style="top:250px;color:#6b655e">Elena y Aitana · MARKA</div>
+  <div class="pal d" id="g1" style="top:330px;font-size:150px;color:var(--carbon)">DOS OPUESTAS.</div>
+  <div class="pal d" id="g2" style="top:480px;font-size:150px;color:var(--carbon)">UNA MARKA.</div>
+
+  <div class="chip et" id="nE" style="left:90px;top:250px">01 · Elena · Branding y estrategia</div>
+  <div class="chip et" id="nA" style="left:90px;top:250px">02 · Aitana · Vídeo y redes</div>
+  <div class="pega d o" id="pE1" style="left:70px;top:620px;transform:rotate(-6deg)">ESTRATEGIA</div>
+  <div class="pega d c" id="pE2" style="left:640px;top:980px;transform:rotate(5deg)">CONCEPTO</div>
+  <div class="pega d o" id="pE3" style="left:110px;top:1140px;transform:rotate(-3deg)">IDENTIDAD</div>
+  <div id="kdib"><svg viewBox="0 0 860 864" width="250" height="251" aria-hidden="true"><path id="kTrazo" fill="none" stroke="#1A1A1A" stroke-width="26" pathLength="1"/></svg></div>
+  <div class="pega d c" id="pA1" style="left:600px;top:640px;transform:rotate(6deg)">VÍDEO</div>
+  <div class="pega d o" id="pA2" style="left:70px;top:900px;transform:rotate(-5deg)">EDICIÓN</div>
+  <div class="pega d c" id="pA3" style="left:660px;top:1140px;transform:rotate(4deg)">REDES</div>
+  <svg id="tl" viewBox="0 0 620 170" aria-hidden="true">
+    <rect x="0" y="0" width="620" height="170" rx="18" fill="#1A1A1A"/>
+    <g id="pistas"></g>
+    <rect id="cab" x="40" y="14" width="6" height="142" fill="#F4F1EB"/>
+  </svg>
+  <div class="chip et" id="vE" style="left:90px;top:250px">Elena</div>
+  <div class="chip et" id="vA" style="left:90px;top:250px">Aitana</div>
+  <div class="sello d" id="sE" style="left:90px;top:560px;transform:rotate(-8deg)">REVISADO POR AITANA</div>
+  <div class="sello d" id="sA" style="left:470px;top:760px;transform:rotate(6deg)">REVISADO POR ELENA</div>
+
+  <div id="quien" class="et"><b></b></div>
+  <div id="subs"></div>
+
+  <section class="esc" id="cta">
+    <div class="pal d" id="c1" style="top:260px;font-size:170px">¿HABLAMOS?</div>
+    <div class="pal b" id="c2" style="top:470px;font-size:52px;padding:0 150px">Escríbenos y te contamos qué haríamos con tu marka.</div>
+    <div class="pal d" id="c3" style="top:640px;font-size:64px">markaestudio.app</div>
+    <div class="pal et" id="c4" style="top:740px;color:#6b655e">Síguenos para ver cómo trabajamos</div>
+  </section>
+  <section class="esc" id="fin">
+    <div class="abs" id="kf" style="left:390px;top:620px;width:300px;height:302px;color:var(--hueso)"></div>
+    <div class="pal d" id="m1" style="top:1010px;font-size:110px;letter-spacing:.12em">MARKA</div>
+    <div class="pal et" id="m2" style="top:1150px;color:var(--piedra)">Ideas que toman forma</div>
+  </section>
+  <div id="flash" class="esc" style="background:var(--hueso);opacity:0"></div>
+</div>
+<div id="grano" style="opacity:.08"></div>
+</div>
+<script src="../motor/k-path.js"></script><script src="../motor/motor.js"></script>
+<script src="assets/elena-aitana.js"></script><script src="../motor/muneca-gl.js"></script>
+<script src="06-silabas.js"></script>
+<script>
+const {e, p, lerp, spring, $, $$, set, clamp, vis} = M;
+const g = Math.PI / 180;
+// Rig medido sobre el boceto (px de la imagen 1214×1295). juntura: línea de los labios en 7 puntos de izquierda a derecha
+const P = [
+  { // Elena
+    boca: {x: 418, y: 289, ang: 17.9 * g, W: 37, c0: 0, interior: [.2, .07, .06], juntura: [-1.4, 5.4, 3.8, 1.7, 1.5, 1.8, -1.4]},
+    ojos: [{x: 382, y: 222, ang: 10 * g, W: 34, H: 44}, {x: 490, y: 242, ang: 17 * g, W: 32, H: 36}],
+    cabeza: {px: 420, py: 395, cx: 430, xin: 150, xout: 215, fy: 75},
+    sep: [575, 615, 0]
+  },
+  { // Aitana
+    boca: {x: 771.5, y: 509, ang: 18.7 * g, W: 38, c0: 0, interior: [.24, .09, .08], juntura: [-.1, 5.8, 7.8, 7.75, 7.6, 5.9, -.7]},
+    ojos: [{x: 735, y: 443, ang: 20 * g, W: 31, H: 46}, {x: 850, y: 473, ang: 19 * g, W: 36, H: 40}],
+    cabeza: {px: 785, py: 640, cx: 790, xin: 165, xout: 235, fy: 85},
+    sep: [585, 625, 1]
+  }
+];
+const Q = {E: 0, A: 1};
+const AMP = {a: 1, e: .72, i: .5, o: .85, u: .6}, ANCHO = {a: 1, e: 1.06, i: 1.1, o: .8, u: .76};
+const ABRE = [11, 10];
+function boca(i, t) {
+  let o = 0, w = 1, best = 0;
+  for (const s of SIL) {
+    if (Q[s[0]] !== i || t < s[1] - .03 || t > s[2] + .06) continue;
+    const k = clamp((t - s[1] + .03) / (s[2] - s[1] + .09)); const env = Math.pow(Math.sin(Math.PI * k), .8) * AMP[s[3]];
+    if (env > best) { best = env; w = lerp(1, ANCHO[s[3]], Math.min(1, env * 1.4)); }
+  }
+  return [best * ABRE[i], w];
+}
+function habla(i, t) { // 0..1 suavizado: está hablando
+  let h = 0; for (const [q, a, b] of LIN) if (q === 'B' || Q[q] === i) h = Math.max(h, e(t, a - .15, a + .1) * (1 - e(t, b, b + .35)));
+  return h;
+}
+function parp(i, t) {
+  const T = i ? [1.3, 4.1, 4.35, 7.6, 10.4, 13.2, 16.0, 18.9, 21.7, 24.6, 27.9, 30.2] : [.6, 3.2, 6.1, 9.0, 9.25, 12.0, 14.9, 17.7, 20.6, 23.5, 26.8, 29.4];
+  let b = 0; for (const a of T) { const d = (t - a) / .17; if (d >= 0 && d <= 1) b = Math.max(b, Math.sin(Math.PI * d)); }
+  return b;
+}
+function cejas(i, t) { let c = 0; for (const [q, a] of LIN) if (q === 'B' || Q[q] === i) { const d = t - a; if (d > -.1 && d < .7) c = Math.max(c, Math.sin(Math.PI * clamp((d + .1) / .8))); } return c * 5; }
+function estado(i, t) {
+  const [abre, ancho] = boca(i, t); const h = habla(i, t), otra = habla(1 - i, t);
+  const giro = Math.sin(t * .9 + i * 2) * 1.1 + h * Math.sin(t * 3.3 + i) * 2.4 + otra * (i ? -1.2 : 1.2);
+  const salto = h * Math.abs(Math.sin(t * 5.5 + i)) * 3.5;
+  return {abre, ancho, giro, salto, cejas: cejas(i, t), resp: Math.sin(t * 1.7 + i * 1.3) * .0035, parpadeo: parp(i, t)};
+}
+// Cámara: punto de la imagen (fx,fy) que va a la posición de pantalla (sx,sy) con escala s
+const C = {
+  ancho: {s: .93, fx: 607, fy: 647.5, sx: 540, sy: 1318},
+  elena: {s: 1.75, fx: 425, fy: 255, sx: 520, sy: 840},
+  aitana: {s: 1.75, fx: 795, fy: 470, sx: 540, sy: 860},
+  elena2: {s: 2.15, fx: 430, fy: 265, sx: 540, sy: 860},
+  aitana2: {s: 2.15, fx: 790, fy: 475, sx: 540, sy: 880},
+  medio: {s: 1.22, fx: 610, fy: 400, sx: 540, sy: 930},
+  cta: {s: .8, fx: 607, fy: 1295, sx: 540, sy: 1920}
+};
+const CAM = [[0, 'ancho'], [2.55, 'elena'], [6.75, 'aitana'], [10.85, 'elena2'], [12.4, 'aitana2'], [13.75, 'elena2'], [14.9, 'aitana2'], [16.55, 'medio'], [19.8, 'ancho'], [25.25, 'cta']];
+function camara(t) {
+  let i = 0; while (i + 1 < CAM.length && CAM[i + 1][0] <= t) i++;
+  const b = C[CAM[i][1]], a = i ? C[CAM[i - 1][1]] : b; const k = e(t, CAM[i][0], CAM[i][0] + .38);
+  const mix = n => lerp(a[n], b[n], k);
+  const empuje = 1 + (t - CAM[i][0]) * .012;
+  const s = mix('s') * empuje;
+  return {s, x: mix('sx') - mix('fx') * s, y: mix('sy') - mix('fy') * s};
+}
+// Subtítulos palabra a palabra
+let lineaAct = -1;
+function subtitulos(t) {
+  let li = -1; LIN.forEach(([q, a, b], k) => { if (t >= a - .05 && t < b + .45) li = k; });
+  const box = $('#subs'), qn = $('#quien b');
+  if (li !== lineaAct) {
+    lineaAct = li;
+    box.innerHTML = li < 0 ? '' : PAL.filter(w => w[0] === li).map(w => `<span data-t="${w[2]}">${w[3]}</span>`).join('');
+    qn.textContent = li < 0 ? '' : ({E: 'Elena', A: 'Aitana', B: 'Las dos'})[LIN[li][0]];
+  }
+  const ws = [...box.children]; let act = -1;
+  ws.forEach((s, k) => { const ta = +s.dataset.t; const kk = e(t, ta - .02, ta + .14); set(s, {opacity: t < ta - .02 ? 0 : 1, transform: `translateY(${(1 - kk) * 18}px) scale(${lerp(.85, 1, kk)})`}); if (t >= ta) act = k; });
+  ws.forEach((s, k) => s.classList.toggle('on', k === act));
+  const sh = li >= 0 && t < 25.2;
+  set($('#subs'), {opacity: sh ? 1 : 0}); set($('#quien'), {opacity: sh ? 1 : 0});
+}
+function up(el, t, a, d = .45, dy = 50) { const k = e(t, a, a + d); set(el, {opacity: k, transform: `translateY(${(1 - k) * dy}px)`}); }
+function pop(el, t, a, b, rot) { const k = spring(t, a, .7, 1.6, 5); const o = t >= a && t < b ? 1 : 0; const out = e(t, b - .2, b); set(el, {opacity: o * (1 - out), transform: `rotate(${rot}deg) scale(${Math.max(0, k) * (1 - out * .3)})`}); }
+function rango(el, t, a, b) { const k = e(t, a, a + .3) * (1 - e(t, b - .25, b)); set(el, {opacity: k, transform: `translateY(${(1 - k) * -20}px)`}); }
+
+// Timeline de edición
+let pi = ''; const CL = ['#F4F1EB', '#B7AEA4', '#D9D5CC'];
+for (let r = 0; r < 3; r++) for (let i = 0; i < 7; i++) pi += `<rect class="clip" data-r="${r}" data-i="${i}" y="${24 + r * 46}" height="34" rx="6" fill="${CL[r]}"/>`;
+$('#pistas').innerHTML = pi;
+$('#kTrazo').setAttribute('d', window.K_PATH); $('#kf').innerHTML = M.kSvg();
+const PALt = w => (PAL.find(x => x[3] === w) || [0, 0, 0])[2];
+const T_MARKA = PAL.filter(x => x[3] === 'MARKA').map(x => x[2])[0];
+window.DURACION = 31.6;
+let rig = null;
+window.LISTO = Muneca.crear($('#gl'), window.IMG_EA, P).then(r => { rig = r; window.render(0); });
+
+window.render = function (t) {
+  M.grano(t);
+  const enFin = t >= 29.0;
+  if (rig) rig.dibuja([estado(0, t), estado(1, t)], camara(t));
+  // gancho
+  const gk = t < 2.55; vis($('#g0'), gk); vis($('#g1'), gk); vis($('#g2'), gk);
+  if (gk) { set($('#g1'), {transform: `scale(${lerp(1.06, 1, e(t, 0, .4))})`}); up($('#g2'), t, .5, .35, 30); }
+  // flashes en cortes
+  let fl = 0; [2.55, 6.75, 16.55, 25.25, 29.0].forEach(c => { const d = t - c; if (d >= 0 && d < .14) fl = Math.max(fl, 1 - d / .14); });
+  $('#flash').style.opacity = fl * .55;
+  // Elena
+  rango($('#nE'), t, 2.6, 6.75);
+  pop($('#pE1'), t, PALt('Estrategia'), 6.75, -6); pop($('#pE2'), t, PALt('concepto'), 6.75, 5); pop($('#pE3'), t, PALt('identidad'), 6.75, -3);
+  const kd = e(t, 3.85, 4.9); set($('#kdib'), {opacity: t > 3.8 && t < 6.75 ? 1 : 0, transform: `rotate(${lerp(-10, 0, kd)}deg)`});
+  $('#kTrazo').style.strokeDasharray = 1; $('#kTrazo').style.strokeDashoffset = 1 - kd;
+  // Aitana
+  rango($('#nA'), t, 6.8, 10.85);
+  pop($('#pA1'), t, PALt('Vídeo'), 10.85, 6); pop($('#pA2'), t, PALt('edición'), 10.85, -5); pop($('#pA3'), t, PALt('redes'), 10.85, 4);
+  const tlv = e(t, 8.0, 8.4) * (1 - e(t, 10.6, 10.85)); set($('#tl'), {opacity: tlv, transform: `translateY(${(1 - tlv) * -40}px)`});
+  $$('.clip').forEach(c => { const r = +c.dataset.r, i = +c.dataset.i; const w = 50 + ((i * 23 + r * 13) % 40); c.setAttribute('x', 30 + i * 82 + Math.sin(t * 2 + i + r) * 6); c.setAttribute('width', w); });
+  $('#cab').setAttribute('x', 30 + ((t - 8) * 160 % 560 + 560) % 560);
+  // opuestas: quién habla arriba
+  const op = t >= 10.85 && t < 16.55; const qE = op && ((t < 12.4) || (t >= 13.75 && t < 14.9)); const qA = op && !qE;
+  set($('#vE'), {opacity: qE ? 1 : 0}); set($('#vA'), {opacity: qA ? 1 : 0});
+  // revisado
+  pop($('#sE'), t, PALt('revisa') - .1, 19.8, -8); pop($('#sA'), t, PALt('otra'), 19.8, 6);
+  // MARKA gigante detrás
+  const mk = spring(t, T_MARKA, .8, 1.8, 5); const mOn = t >= T_MARKA && t < 25.25;
+  const mueve = t >= PALt('mueva') ? Math.sin((t - PALt('mueva')) * 14) * 6 * (1 - e(t, PALt('mueva'), PALt('mueva') + 1)) : 0;
+  set($('#gMarka'), {opacity: mOn ? 1 : 0, transform: `scale(${lerp(1.6, 1, clamp(mk, 0, 2))}) rotate(${mueve}deg)`});
+  subtitulos(t);
+  // CTA (las muñecas siguen abajo)
+  const ct = t >= 25.25 && t < 29.0; set($('#cta'), {display: ct ? '' : 'none', clipPath: `inset(0 0 ${lerp(100, 56, e(t, 25.25, 25.7))}% 0)`});
+  if (ct) { up($('#c1'), t, 25.4, .4, 40); up($('#c2'), t, 26.0, .45, 30); up($('#c3'), t, 26.6, .45, 20); up($('#c4'), t, 27.0, .45, 20); }
+  vis($('#fin'), enFin); vis($('#gl'), !enFin);
+  if (enFin) { const k = spring(t, 29.0, 1.1, 1.8, 5); set($('#kf'), {transform: `scale(${lerp(2.4, 1, k)}) rotate(${lerp(-20, 0, k)}deg)`}); up($('#m1'), t, 29.45, .5, 40); up($('#m2'), t, 29.8, .5, 20); }
+};
+</script></body></html>

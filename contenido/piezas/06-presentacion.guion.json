@@ -1,0 +1,21 @@
+{"duracion": 31.6,
+ "voces": {"E": {"f0": 200, "var": 0.12}, "A": {"f0": 285, "var": 0.16}},
+ "lineas": [
+  ["E", 2.75, 3.65, "Yo soy Elena."],
+  ["E", 3.8, 4.8, "Pienso la marka."],
+  ["E", 4.95, 6.5, "Estrategia, concepto, identidad."],
+  ["A", 6.95, 7.85, "Yo soy Aitana."],
+  ["A", 8.0, 9.0, "Y la pongo a moverse."],
+  ["A", 9.15, 10.55, "Vídeo, edición y redes."],
+  ["E", 11.0, 12.25, "Yo pienso antes de hacer."],
+  ["A", 12.5, 13.55, "Yo hago para pensar."],
+  ["E", 13.9, 14.75, "Yo lo ordeno todo."],
+  ["A", 15.0, 16.3, "Y yo lo pongo patas arriba."],
+  ["E", 16.75, 17.6, "Por eso funciona."],
+  ["A", 17.8, 19.55, "Lo que hace una, lo revisa la otra."],
+  ["B", 20.0, 21.6, "Y juntas hemos montado MARKA."],
+  ["E", 22.0, 23.65, "Para que tu marka se parezca a ti."],
+  ["A", 23.9, 24.85, "Y que se mueva."],
+  ["E", 25.7, 26.45, "¿Hablamos?"],
+  ["A", 26.65, 27.5, "Escríbenos."]
+ ]}
