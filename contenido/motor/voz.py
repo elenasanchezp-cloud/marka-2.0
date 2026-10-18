@@ -22,21 +22,22 @@ def silabas(palabra):
     return grupos or ['a']
 
 def silaba(d, f0, vocal, cons, pend):
+    # voz suave: pocos armónicos con caída rápida, formantes estrechos, vibrato y envolvente redonda
     n = int(d * SR); x = np.arange(n) / SR
-    f = f0 * (1 + pend * x / d)
+    f = f0 * (1 + pend * x / d) * (1 + .012 * np.sin(2 * np.pi * 5.5 * x))
     ph = 2 * np.pi * np.cumsum(f) / SR
     F1, F2 = FORM[vocal]; s = np.zeros(n)
-    for k in range(1, 24):
+    for k in range(1, 14):
         fk = k * f0
-        if fk > 5000: break
-        a = np.exp(-((fk - F1) / 260) ** 2) + .7 * np.exp(-((fk - F2) / 380) ** 2) + .08 / k
+        if fk > 3800: break
+        a = (np.exp(-((fk - F1) / 200) ** 2) + .45 * np.exp(-((fk - F2) / 300) ** 2) + .35 / k ** 1.4)
         s += a * np.sin(k * ph)
-    env = np.minimum(1, x / .012) * np.exp(-x / (d * .55)) * np.minimum(1, (d - x) / .02)
+    env = np.sin(np.pi * np.clip(x / d, 0, 1)) ** .6 * np.minimum(1, x / .018)
     s *= env
     if cons:
-        m = int(.018 * SR); w = rng.standard_normal(m) * np.exp(-np.arange(m) / SR * 160) * .35
+        m = int(.014 * SR); w = np.diff(np.concatenate([[0], rng.standard_normal(m)])) * np.exp(-np.arange(m) / SR * 220) * .05
         s[:m] += w
-    return s / 3
+    return s / 2.5
 
 SIL, PAL = [], []
 for li, (q, t0, t1, txt) in enumerate(g["lineas"]):
@@ -58,7 +59,10 @@ for li, (q, t0, t1, txt) in enumerate(g["lineas"]):
             i = int(t * SR); j = min(N, i + len(sig)); voz[i:j] += sig[:j - i] * (.8 if q == 'B' else 1)
             SIL.append([qq, round(t, 3), round(t + d * .92, 3), v])
         t += u; prev = wi
-voz = np.tanh(voz * 1.5); voz /= np.max(np.abs(voz)) + 1e-9; voz *= .9
+# reverb corta de sala y normalización sin distorsión
+ir_n = int(.35 * SR); ir = rng.standard_normal(ir_n) * np.exp(-np.arange(ir_n) / SR * 14) * .06; ir[0] = 1
+L = 1 << int(np.ceil(np.log2(N + ir_n))); voz = np.fft.irfft(np.fft.rfft(voz, L) * np.fft.rfft(ir, L), L)[:N]
+voz /= np.max(np.abs(voz)) + 1e-9; voz *= .85
 with wave.open(sys.argv[2], 'wb') as f:
     f.setnchannels(1); f.setsampwidth(2); f.setframerate(SR); f.writeframes((voz * 32767).astype(np.int16).tobytes())
 lineas = [[q, t0, t1, txt] for q, t0, t1, txt in g["lineas"]]

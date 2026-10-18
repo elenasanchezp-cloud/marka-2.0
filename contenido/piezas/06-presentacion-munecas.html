@@ -2,99 +2,209 @@
 <html lang="es"><head><meta charset="utf-8"><title>Somos MARKA · Elena y Aitana</title>
 <link rel="stylesheet" href="../motor/base.css">
 <style>
-body,.lienzo{background:var(--arena)}
-#gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
-.pal{position:absolute;left:0;right:0;text-align:center}
+body,.lienzo{background:var(--carbon)}
 .capa{position:absolute;inset:0}
-#detras .gig{position:absolute;left:0;right:0;text-align:center;color:var(--carbon);font-size:300px;letter-spacing:-.02em;line-height:.85}
-#gancho{color:var(--carbon)}
-.chip{position:absolute;padding:14px 26px 12px;background:var(--carbon);color:var(--hueso);white-space:nowrap}
-.pega{position:absolute;padding:20px 30px 16px;font-size:58px;white-space:nowrap;border:4px solid var(--carbon)}
-.pega.o{background:var(--carbon);color:var(--hueso)} .pega.c{background:var(--hueso);color:var(--carbon)}
-#subs{position:absolute;left:90px;right:170px;top:1390px;text-align:center}
-#subs span{display:inline-block;font:800 72px/1.16 'Inter',sans-serif;color:var(--hueso);margin:0 .12em;padding:0 .1em;letter-spacing:-.02em;-webkit-text-stroke:14px var(--carbon);paint-order:stroke fill}
-#subs span.on{background:var(--carbon);-webkit-text-stroke:0}
-#quien{position:absolute;left:0;right:0;top:1300px;text-align:center}
-#quien b{display:inline-block;background:var(--hueso);color:var(--carbon);padding:10px 22px 8px}
-#tl{position:absolute;left:150px;top:300px;width:620px;height:170px}
-#kdib{position:absolute;left:690px;top:250px;width:250px;height:251px}
-.sello{position:absolute;padding:18px 26px 14px;border:5px solid var(--carbon);color:var(--carbon);background:rgba(244,241,235,.9);font-size:40px;white-space:nowrap}
-#cta{background:var(--hueso);color:var(--carbon)}
-#fin{background:var(--carbon);color:var(--hueso)}
+.pal{position:absolute;left:0;right:0;text-align:center}
+#mundo,#mesa{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#gl{position:absolute;left:0;top:0;width:1080px;height:1920px}
+/* oficina */
+#pared{position:absolute;left:-500px;top:-300px;width:2080px;height:2400px;background:linear-gradient(180deg,#D9D5CC 0,#D9D5CC 52%,#B7AEA4 52%,#B7AEA4 100%)}
+#zocalo{position:absolute;left:-500px;width:2080px;top:948px;height:10px;background:#1A1A1A;opacity:.25}
+#luzPared{position:absolute;left:40px;top:-40px;width:1000px;height:760px;background:radial-gradient(closest-side,rgba(244,241,235,.95),rgba(244,241,235,0));pointer-events:none}
+#letrero{position:absolute;left:170px;top:150px;width:740px;height:250px;background:#1A1A1A;border-radius:22px;box-shadow:0 24px 0 rgba(26,26,26,.18)}
+#letrero .k{position:absolute;left:52px;top:52px;width:146px;height:147px;color:#F4F1EB}
+#letrero .t{position:absolute;left:228px;top:56px;font-size:136px;letter-spacing:.02em;color:#F4F1EB;line-height:1;white-space:nowrap}
+#letrero .t span{display:inline-block}
+#letrero .s{position:absolute;left:236px;top:202px;color:#B7AEA4;white-space:nowrap;font-size:22px}
+#brilloL{position:absolute;left:100px;top:80px;width:880px;height:390px;background:radial-gradient(closest-side,rgba(244,241,235,.9),rgba(244,241,235,0));opacity:0}
+.estante{position:absolute;height:14px;background:#1A1A1A;border-radius:3px}
+.libro{position:absolute;bottom:14px;border-radius:2px}
+#reloj{position:absolute;left:30px;top:470px;width:150px;height:150px;border-radius:50%;background:#F4F1EB;border:10px solid #1A1A1A}
+#reloj i{position:absolute;left:50%;bottom:50%;width:8px;margin-left:-4px;background:#1A1A1A;border-radius:4px;transform-origin:50% 100%}
+#tablon{position:absolute;left:840px;top:470px;width:300px;height:390px;background:#F4F1EB;border:10px solid #1A1A1A;border-radius:8px;overflow:visible}
+.foto{position:absolute;border:8px solid #F4F1EB;box-shadow:0 10px 18px rgba(26,26,26,.25);background-size:cover;background-position:center}
+.postit{position:absolute;width:96px;height:96px;box-shadow:0 8px 12px rgba(26,26,26,.18)}
+.chincheta{position:absolute;width:16px;height:16px;border-radius:50%;background:#1A1A1A;left:50%;top:-6px;margin-left:-8px}
+.lampara{position:absolute;top:-300px;width:4px;background:#1A1A1A;transform-origin:50% 0}
+.lampara b{position:absolute;left:-60px;bottom:-60px;width:124px;height:62px;background:#1A1A1A;border-radius:62px 62px 6px 6px}
+.lampara u{position:absolute;left:-40px;bottom:-110px;width:84px;height:50px;background:radial-gradient(closest-side,rgba(244,241,235,.95),rgba(244,241,235,0))}
+/* mesa */
+#tapa{position:absolute;left:-500px;width:2080px;top:1330px;height:80px;background:linear-gradient(180deg,#F4F1EB,#D9D5CC)}
+#frente{position:absolute;left:-500px;width:2080px;top:1410px;height:1000px;background:#1A1A1A}
+#frente .k{position:absolute;left:960px;top:150px;width:90px;height:91px;color:#B7AEA4;opacity:.35}
+#portatil{position:absolute;left:760px;top:1150px;width:280px;height:195px;background:#1A1A1A;border-radius:16px 16px 4px 4px;transform-origin:50% 100%}
+#portatil .k{position:absolute;left:105px;top:62px;width:70px;height:70px;color:#F4F1EB}
+#portatil:after{content:"";position:absolute;left:-20px;right:-20px;bottom:-14px;height:14px;background:#B7AEA4;border-radius:0 0 8px 8px}
+#tableta{position:absolute;left:40px;top:1190px;width:230px;height:160px;background:#1A1A1A;border-radius:14px;transform:perspective(600px) rotateX(18deg);transform-origin:50% 100%}
+#tableta i{position:absolute;inset:12px;background:#F4F1EB;border-radius:6px;overflow:hidden}
+.taza{position:absolute;top:1255px;width:84px;height:92px;border-radius:6px 6px 22px 22px;transform-origin:50% 100%}
+.taza:after{content:"";position:absolute;right:-30px;top:18px;width:30px;height:40px;border:9px solid currentColor;border-left:0;border-radius:0 22px 22px 0}
+.taza .et{position:absolute;left:0;right:0;top:34px;text-align:center;font-size:22px}
+.vapor{position:absolute;top:-90px;left:22px;width:40px;height:90px}
+#planta{position:absolute;left:-30px;top:1110px;width:170px;height:240px}
+#papel{position:absolute;top:1300px;width:150px;height:46px;background:#F4F1EB;border:3px solid #1A1A1A;border-radius:4px;transform:skewX(-20deg)}
+#movil{position:absolute;top:1296px;width:70px;height:46px;background:#1A1A1A;border-radius:8px;transform:skewX(-20deg)}
+.sellito{position:absolute;padding:10px 18px 8px;border:5px solid #1A1A1A;color:#1A1A1A;background:#F4F1EB;font-size:34px;white-space:nowrap}
+.confeti{position:absolute;width:44px;height:44px;color:#1A1A1A}
+/* inserciones */
+.ins{position:absolute;inset:0;overflow:hidden}
+#insT{background:#F4F1EB}
+#tab2{position:absolute;left:110px;top:330px;width:860px;height:1120px;background:#1A1A1A;border-radius:56px}
+#tab2 i{position:absolute;left:34px;top:34px;right:34px;bottom:34px;background:#F4F1EB;border-radius:26px;overflow:hidden}
+#tab2 svg.kd{position:absolute;left:150px;top:150px;width:490px;height:492px}
+.swatch{position:absolute;top:740px;width:150px;height:150px;border-radius:16px;border:4px solid #1A1A1A}
+#lapiz{position:absolute;left:0;top:0;width:40px;height:300px;transform-origin:20px 300px}
+#lapiz:before{content:"";position:absolute;left:6px;top:0;width:28px;height:260px;background:#1A1A1A;border-radius:14px 14px 4px 4px}
+#lapiz:after{content:"";position:absolute;left:10px;top:256px;border-left:10px solid transparent;border-right:10px solid transparent;border-top:44px solid #1A1A1A}
+#insL{background:#1A1A1A}
+#pantalla{position:absolute;left:60px;top:300px;width:960px;height:1180px;background:#2a2826;border-radius:30px;border:14px solid #3a3735;overflow:hidden}
+#preview{position:absolute;left:300px;top:60px;width:360px;height:640px;background:#F4F1EB;border-radius:30px;overflow:hidden;border:10px solid #1A1A1A}
+#pk{position:absolute;left:105px;top:240px;width:130px;height:131px;color:#1A1A1A}
+#pistas2{position:absolute;left:30px;right:30px;top:760px;height:330px}
+.clip2{position:absolute;height:80px;border-radius:12px}
+#cabezal{position:absolute;top:740px;width:8px;height:370px;background:#F4F1EB}
+#cursor{position:absolute;width:40px;height:56px}
+.corazon{position:absolute;width:60px;height:56px;color:#F4F1EB}
+/* opuestas */
+.opu{overflow:hidden}
+#opL{position:absolute;left:0;top:0;height:1920px;background:#F4F1EB}
+#opR{position:absolute;top:0;height:1920px;background:#B7AEA4}
+#opDiv{position:absolute;top:0;width:10px;height:1920px;background:#1A1A1A;margin-left:-5px}
+#vs{position:absolute;top:880px;width:150px;height:150px;margin-left:-75px;border-radius:50%;background:#1A1A1A;color:#F4F1EB;font-size:64px;line-height:150px;text-align:center}
+.opNom{position:absolute;top:260px;font-size:96px;color:#1A1A1A;white-space:nowrap}
+#lista{position:absolute;left:60px;top:1560px;width:380px}
+#lista div{font:700 40px/1.2 'Inter',sans-serif;color:#1A1A1A;margin:0 0 14px;white-space:nowrap}
+#lista b{display:inline-block;width:40px;height:40px;border:5px solid #1A1A1A;margin-right:16px;vertical-align:-8px;text-align:center;line-height:30px;font-size:34px}
+.pi{position:absolute;width:110px;height:110px;box-shadow:0 8px 14px rgba(26,26,26,.25)}
+/* texto */
+#subs{position:absolute;left:90px;right:170px;top:1440px;text-align:center}
+#subs span{display:inline-block;font:800 72px/1.16 'Inter',sans-serif;color:#F4F1EB;margin:0 .12em;padding:0 .1em;letter-spacing:-.02em;-webkit-text-stroke:14px #1A1A1A;paint-order:stroke fill}
+#subs span.on{background:#F4F1EB;color:#1A1A1A;-webkit-text-stroke:0}
+#quien{position:absolute;left:0;right:0;top:1370px;text-align:center}
+#quien b{display:inline-block;background:#1A1A1A;color:#F4F1EB;padding:10px 22px 8px}
+#gancho{background:#1A1A1A;color:#F4F1EB}
+.pega{position:absolute;padding:20px 30px 16px;font-size:58px;white-space:nowrap;border:5px solid #1A1A1A}
+.pega.o{background:#1A1A1A;color:#F4F1EB} .pega.c{background:#F4F1EB;color:#1A1A1A}
+#cartel{position:absolute;left:170px;top:-560px;width:740px;height:400px;transform-origin:50% -300px}
+#cartel .cuerda{position:absolute;top:-300px;width:5px;height:300px;background:#1A1A1A}
+#cartel .pl{position:absolute;inset:0;background:#F4F1EB;border:10px solid #1A1A1A;border-radius:18px;text-align:center}
+#fin{background:#1A1A1A;color:#F4F1EB}
+#flash{background:#F4F1EB;opacity:0}
+#oscuro{background:#1A1A1A}
 </style></head>
 <body><div class="lienzo">
-<div class="capa" id="detras">
-  <div class="gig d" id="gMarka" style="top:330px">MARKA</div>
+<div class="capa" id="giro">
+<div class="capa opu" id="opuB"><div id="opL"></div><div id="opR"></div></div>
+<div id="mundo">
+  <div id="pared"></div><div id="zocalo"></div><div id="luzPared"></div>
+  <div class="lampara" id="lam1" style="left:110px;height:520px"><b></b><u></u></div>
+  <div class="lampara" id="lam2" style="left:990px;height:470px"><b></b><u></u></div>
+  <div id="brilloL"></div>
+  <div id="letrero"><div class="k" id="lk"></div><div class="t d" id="lt"><span>M</span><span>A</span><span>R</span><span>K</span><span>A</span></div><div class="s et">Ideas que toman forma</div></div>
+  <div class="estante" style="left:-80px;top:760px;width:300px"></div>
+  <div id="libros"></div>
+  <div id="reloj"><i id="hh" style="height:42px"></i><i id="mm" style="height:58px;width:6px;margin-left:-3px"></i></div>
+  <div id="tablon">
+    <div class="foto" id="f1" style="left:22px;top:24px;width:130px;height:150px;background-image:url(../../img/escultura.webp);transform:rotate(-4deg)"><i class="chincheta"></i></div>
+    <div class="postit" style="left:170px;top:30px;background:#B7AEA4;transform:rotate(5deg)"><i class="chincheta"></i></div>
+    <div class="postit" style="left:30px;top:206px;background:#D9D5CC;transform:rotate(3deg)"><i class="chincheta"></i></div>
+    <div class="foto" style="left:146px;top:190px;width:120px;height:140px;background-image:url(../../img/luz.webp);transform:rotate(6deg)"><i class="chincheta"></i></div>
+  </div>
+  <div id="fotosVuelan"></div>
 </div>
 <canvas id="gl" width="1080" height="1920"></canvas>
+<div id="mesa">
+  <div id="tapa"></div><div id="frente"></div>
+  <svg id="planta" viewBox="0 0 170 240" aria-hidden="true"><g id="hojas" style="transform-origin:85px 170px">
+    <path d="M85 170 C40 120 20 80 30 30 C60 60 80 110 85 170Z" fill="#1A1A1A"/><path d="M85 170 C110 110 140 80 160 50 C160 110 120 150 85 170Z" fill="#1A1A1A"/><path d="M85 170 C70 110 80 60 100 10 C110 70 100 120 85 170Z" fill="#B7AEA4"/></g>
+    <path d="M45 165 H125 L115 238 H55Z" fill="#B7AEA4"/></svg>
+  <div id="tableta"><i><svg viewBox="0 0 860 864" style="position:absolute;left:60px;top:18px;width:90px;height:90px"><path id="kMini" fill="none" stroke="#1A1A1A" stroke-width="40" pathLength="1"/></svg></i></div>
+  <div class="taza" id="tE" style="left:430px;background:#1A1A1A;color:#1A1A1A"><div class="et" style="color:#F4F1EB">E</div><svg class="vapor" viewBox="0 0 40 90"><path class="vp" d="M20 90 C0 70 40 50 20 30 C5 15 30 5 20 0" fill="none" stroke="#F4F1EB" stroke-width="5" stroke-linecap="round" opacity=".8"/></svg></div>
+  <div class="taza" id="tA" style="left:590px;background:#F4F1EB;color:#F4F1EB;border:4px solid #1A1A1A"><div class="et" style="color:#1A1A1A">A</div><svg class="vapor" viewBox="0 0 40 90"><path class="vp" d="M20 90 C0 70 40 50 20 30 C5 15 30 5 20 0" fill="none" stroke="#F4F1EB" stroke-width="5" stroke-linecap="round" opacity=".8"/></svg></div>
+  <div id="portatil"><div class="k" id="ptk"></div></div>
+  <div id="papel"></div><div id="movil"></div>
+  <div class="sellito d" id="sel1" style="left:640px;top:1220px">REVISADO</div>
+  <div class="sellito d" id="sel2" style="left:250px;top:1220px">REVISADO</div>
+  <div id="confetis"></div>
+</div>
+<div class="capa opu" id="opuF">
+  <div class="opNom d" id="nomE">ELENA</div><div class="opNom d" id="nomA">AITANA</div>
+  <div id="lista"><div><b id="c1"></b>Idea</div><div><b id="c2"></b>Plan</div><div><b id="c3"></b>Hacer</div></div>
+  <div id="pis"></div>
+  <div id="opDiv"></div><div id="vs" class="d">VS</div>
+</div>
+</div>
+
+<div class="capa ins" id="insT">
+  <div class="pal et" style="top:220px;color:#6b655e">Elena · concepto</div>
+  <div id="tab2"><i>
+    <svg class="kd" viewBox="0 0 860 864" aria-hidden="true"><path id="kGrande" fill="none" stroke="#1A1A1A" stroke-width="22" pathLength="1"/><path id="kRelleno" fill="#1A1A1A" opacity="0"/></svg>
+    <div class="swatch" style="left:40px;background:#1A1A1A"></div><div class="swatch" style="left:230px;background:#F4F1EB"></div>
+    <div class="swatch" style="left:420px;background:#D9D5CC"></div><div class="swatch" style="left:610px;background:#B7AEA4"></div>
+    <div class="pal d" id="tabTxt" style="top:930px;font-size:76px;color:#1A1A1A">ESTO ES TU MARKA.</div>
+  </i></div>
+  <div id="lapiz"></div>
+</div>
+
+<div class="capa ins" id="insL">
+  <div class="pal et" style="top:220px;color:#B7AEA4">Aitana · edición</div>
+  <div id="pantalla">
+    <div id="preview"><div id="pk"></div><div class="pal d" id="pvTxt" style="top:470px;font-size:42px;color:#1A1A1A">EN MOVIMIENTO</div></div>
+    <div id="corazones"></div>
+    <div id="pistas2"></div><div id="cabezal"></div>
+    <svg id="cursor" viewBox="0 0 40 56" aria-hidden="true"><path d="M2 2 L2 46 L13 35 L21 54 L29 50 L21 32 L37 32 Z" fill="#F4F1EB" stroke="#1A1A1A" stroke-width="3"/></svg>
+  </div>
+</div>
+
 <div class="capa" id="delante">
-  <div class="pal et" id="g0" style="top:250px;color:#6b655e">Elena y Aitana · MARKA</div>
-  <div class="pal d" id="g1" style="top:330px;font-size:150px;color:var(--carbon)">DOS OPUESTAS.</div>
-  <div class="pal d" id="g2" style="top:480px;font-size:150px;color:var(--carbon)">UNA MARKA.</div>
-
-  <div class="chip et" id="nE" style="left:90px;top:250px">01 · Elena · Branding y estrategia</div>
-  <div class="chip et" id="nA" style="left:90px;top:250px">02 · Aitana · Vídeo y redes</div>
-  <div class="pega d o" id="pE1" style="left:70px;top:620px;transform:rotate(-6deg)">ESTRATEGIA</div>
-  <div class="pega d c" id="pE2" style="left:640px;top:980px;transform:rotate(5deg)">CONCEPTO</div>
-  <div class="pega d o" id="pE3" style="left:110px;top:1140px;transform:rotate(-3deg)">IDENTIDAD</div>
-  <div id="kdib"><svg viewBox="0 0 860 864" width="250" height="251" aria-hidden="true"><path id="kTrazo" fill="none" stroke="#1A1A1A" stroke-width="26" pathLength="1"/></svg></div>
-  <div class="pega d c" id="pA1" style="left:600px;top:640px;transform:rotate(6deg)">VÍDEO</div>
-  <div class="pega d o" id="pA2" style="left:70px;top:900px;transform:rotate(-5deg)">EDICIÓN</div>
-  <div class="pega d c" id="pA3" style="left:660px;top:1140px;transform:rotate(4deg)">REDES</div>
-  <svg id="tl" viewBox="0 0 620 170" aria-hidden="true">
-    <rect x="0" y="0" width="620" height="170" rx="18" fill="#1A1A1A"/>
-    <g id="pistas"></g>
-    <rect id="cab" x="40" y="14" width="6" height="142" fill="#F4F1EB"/>
-  </svg>
-  <div class="chip et" id="vE" style="left:90px;top:250px">Elena</div>
-  <div class="chip et" id="vA" style="left:90px;top:250px">Aitana</div>
-  <div class="sello d" id="sE" style="left:90px;top:560px;transform:rotate(-8deg)">REVISADO POR AITANA</div>
-  <div class="sello d" id="sA" style="left:470px;top:760px;transform:rotate(6deg)">REVISADO POR ELENA</div>
-
+  <div class="pega d o" id="pE1" style="left:60px;top:560px;transform:rotate(-6deg)">ESTRATEGIA</div>
+  <div class="pega d c" id="pE2" style="left:600px;top:930px;transform:rotate(5deg)">CONCEPTO</div>
+  <div class="pega d o" id="pE3" style="left:90px;top:1150px;transform:rotate(-3deg)">IDENTIDAD</div>
+  <div class="pega d c" id="pA1" style="left:620px;top:560px;transform:rotate(6deg)">VÍDEO</div>
+  <div class="pega d o" id="pA2" style="left:60px;top:860px;transform:rotate(-5deg)">EDICIÓN</div>
+  <div class="pega d c" id="pA3" style="left:640px;top:1130px;transform:rotate(4deg)">REDES</div>
+  <div id="cartel"><i class="cuerda" style="left:120px"></i><i class="cuerda" style="right:120px"></i>
+    <div class="pl"><div class="d" style="font-size:128px;margin-top:62px;color:#1A1A1A">¿HABLAMOS?</div><div class="d" style="text-transform:none;font-size:62px;margin-top:34px;color:#1A1A1A">markaestudio.app</div></div></div>
+  <div class="pal et" id="sigue" style="top:1560px;color:#F4F1EB"><b style="background:#1A1A1A;padding:12px 24px 10px;display:inline-block">Síguenos para ver cómo trabajamos</b></div>
   <div id="quien" class="et"><b></b></div>
   <div id="subs"></div>
-
-  <section class="esc" id="cta">
-    <div class="pal d" id="c1" style="top:260px;font-size:170px">¿HABLAMOS?</div>
-    <div class="pal b" id="c2" style="top:470px;font-size:52px;padding:0 150px">Escríbenos y te contamos qué haríamos con tu marka.</div>
-    <div class="pal d" id="c3" style="top:640px;font-size:64px">markaestudio.app</div>
-    <div class="pal et" id="c4" style="top:740px;color:#6b655e">Síguenos para ver cómo trabajamos</div>
-  </section>
-  <section class="esc" id="fin">
-    <div class="abs" id="kf" style="left:390px;top:620px;width:300px;height:302px;color:var(--hueso)"></div>
-    <div class="pal d" id="m1" style="top:1010px;font-size:110px;letter-spacing:.12em">MARKA</div>
-    <div class="pal et" id="m2" style="top:1150px;color:var(--piedra)">Ideas que toman forma</div>
-  </section>
-  <div id="flash" class="esc" style="background:var(--hueso);opacity:0"></div>
 </div>
-<div id="grano" style="opacity:.08"></div>
+<div class="capa" id="oscuro"></div>
+<div class="capa" id="gancho">
+  <div class="pal d" id="g1" style="top:700px;font-size:150px">DOS OPUESTAS.</div>
+  <div class="pal d" id="g2" style="top:860px;font-size:150px">UN ESTUDIO.</div>
+  <div class="pal et" id="g0" style="top:1080px;color:#B7AEA4">Elena y Aitana · MARKA</div>
+</div>
+<section class="esc" id="fin">
+  <div class="abs" id="kf" style="left:390px;top:620px;width:300px;height:302px;color:#F4F1EB"></div>
+  <div class="pal d" id="m1" style="top:1010px;font-size:110px;letter-spacing:.12em">MARKA</div>
+  <div class="pal et" id="m2" style="top:1150px;color:#B7AEA4">Ideas que toman forma</div>
+</section>
+<div class="capa" id="flash"></div>
+<div id="grano" style="opacity:.07"></div>
 </div>
 <script src="../motor/k-path.js"></script><script src="../motor/motor.js"></script>
-<script src="assets/elena-aitana.js"></script><script src="../motor/muneca-gl.js"></script>
+<script src="assets/elena.js"></script><script src="assets/aitana.js"></script><script src="../motor/muneca-gl.js"></script>
 <script src="06-silabas.js"></script>
 <script>
-const {e, p, lerp, spring, $, $$, set, clamp, vis} = M;
+const {e, p, lerp, spring, $, $$, set, clamp, vis, inOut} = M;
 const g = Math.PI / 180;
-// Rig medido sobre el boceto (px de la imagen 1214×1295). juntura: línea de los labios en 7 puntos de izquierda a derecha
-const P = [
-  { // Elena
-    boca: {x: 418, y: 289, ang: 17.9 * g, W: 37, c0: 0, interior: [.2, .07, .06], juntura: [-1.4, 5.4, 3.8, 1.7, 1.5, 1.8, -1.4]},
-    ojos: [{x: 382, y: 222, ang: 10 * g, W: 34, H: 44}, {x: 490, y: 242, ang: 17 * g, W: 32, H: 36}],
-    cabeza: {px: 420, py: 395, cx: 430, xin: 150, xout: 215, fy: 75},
-    sep: [575, 615, 0]
-  },
-  { // Aitana
-    boca: {x: 771.5, y: 509, ang: 18.7 * g, W: 38, c0: 0, interior: [.24, .09, .08], juntura: [-.1, 5.8, 7.8, 7.75, 7.6, 5.9, -.7]},
-    ojos: [{x: 735, y: 443, ang: 20 * g, W: 31, H: 46}, {x: 850, y: 473, ang: 19 * g, W: 36, H: 40}],
-    cabeza: {px: 785, py: 640, cx: 790, xin: 165, xout: 235, fy: 85},
-    sep: [585, 625, 1]
-  }
-];
+// Rig medido sobre el boceto (px de la imagen 1214×1295, igual para las dos capas)
+const PE = {
+  boca: {x: 418, y: 289, ang: 17.9 * g, W: 37, interior: [.2, .07, .06], juntura: [-1.4, 5.4, 3.8, 1.7, 1.5, 1.8, -1.4]},
+  ojos: [{x: 382, y: 222, ang: 10 * g, W: 34, H: 44}, {x: 490, y: 242, ang: 17 * g, W: 32, H: 36}],
+  cabeza: {px: 420, py: 395, cx: 430, xin: 150, xout: 215, fy: 75}, base: [400, 1295]
+};
+const PA = {
+  boca: {x: 771.5, y: 509, ang: 18.7 * g, W: 38, interior: [.24, .09, .08], juntura: [-.1, 5.8, 7.8, 7.75, 7.6, 5.9, -.7]},
+  ojos: [{x: 735, y: 443, ang: 20 * g, W: 31, H: 46}, {x: 850, y: 473, ang: 19 * g, W: 36, H: 40}],
+  cabeza: {px: 785, py: 640, cx: 790, xin: 165, xout: 235, fy: 85}, base: [800, 1295]
+};
 const Q = {E: 0, A: 1};
 const AMP = {a: 1, e: .72, i: .5, o: .85, u: .6}, ANCHO = {a: 1, e: 1.06, i: 1.1, o: .8, u: .76};
 const ABRE = [11, 10];
 function boca(i, t) {
-  let o = 0, w = 1, best = 0;
+  let best = 0, w = 1;
   for (const s of SIL) {
     if (Q[s[0]] !== i || t < s[1] - .03 || t > s[2] + .06) continue;
     const k = clamp((t - s[1] + .03) / (s[2] - s[1] + .09)); const env = Math.pow(Math.sin(Math.PI * k), .8) * AMP[s[3]];
@@ -102,107 +212,245 @@ function boca(i, t) {
   }
   return [best * ABRE[i], w];
 }
-function habla(i, t) { // 0..1 suavizado: está hablando
-  let h = 0; for (const [q, a, b] of LIN) if (q === 'B' || Q[q] === i) h = Math.max(h, e(t, a - .15, a + .1) * (1 - e(t, b, b + .35)));
-  return h;
-}
+function habla(i, t) { let h = 0; for (const [q, a, b] of LIN) if (q === 'B' || Q[q] === i) h = Math.max(h, e(t, a - .15, a + .1) * (1 - e(t, b, b + .35))); return h; }
 function parp(i, t) {
-  const T = i ? [1.3, 4.1, 4.35, 7.6, 10.4, 13.2, 16.0, 18.9, 21.7, 24.6, 27.9, 30.2] : [.6, 3.2, 6.1, 9.0, 9.25, 12.0, 14.9, 17.7, 20.6, 23.5, 26.8, 29.4];
-  let b = 0; for (const a of T) { const d = (t - a) / .17; if (d >= 0 && d <= 1) b = Math.max(b, Math.sin(Math.PI * d)); }
-  return b;
+  const T = i ? [1.3, 4.1, 4.35, 7.6, 10.4, 13.2, 16.0, 18.9, 21.9, 24.6, 27.9] : [.9, 3.2, 6.1, 9.0, 9.25, 12.0, 14.9, 17.7, 20.6, 23.5, 26.8];
+  let b = 0; for (const a of T) { const d = (t - a) / .17; if (d >= 0 && d <= 1) b = Math.max(b, Math.sin(Math.PI * d)); } return b;
 }
-function cejas(i, t) { let c = 0; for (const [q, a] of LIN) if (q === 'B' || Q[q] === i) { const d = t - a; if (d > -.1 && d < .7) c = Math.max(c, Math.sin(Math.PI * clamp((d + .1) / .8))); } return c * 5; }
+function cejas(i, t) { let c = 0; for (const [q, a] of LIN) if (q === 'B' || Q[q] === i) { const d = t - a; if (d > -.1 && d < .7) c = Math.max(c, Math.sin(Math.PI * clamp((d + .1) / .8))); } return c * 6; }
+// Mirar a la otra (giro de cabeza extra) en momentos de interacción
+const MIRA = [[5.4, 6.6, 1], [9.5, 10.6, 0], [16.55, 19.8, 2], [20.0, 21.2, 2]];
+function mira(i, t) { let m = 0; for (const [a, b, q] of MIRA) if (q === 2 || q === i) m = Math.max(m, e(t, a, a + .3) * (1 - e(t, b - .3, b))); return m; }
 function estado(i, t) {
   const [abre, ancho] = boca(i, t); const h = habla(i, t), otra = habla(1 - i, t);
-  const giro = Math.sin(t * .9 + i * 2) * 1.1 + h * Math.sin(t * 3.3 + i) * 2.4 + otra * (i ? -1.2 : 1.2);
-  const salto = h * Math.abs(Math.sin(t * 5.5 + i)) * 3.5;
-  return {abre, ancho, giro, salto, cejas: cejas(i, t), resp: Math.sin(t * 1.7 + i * 1.3) * .0035, parpadeo: parp(i, t)};
+  const giro = Math.sin(t * .9 + i * 2) * 1.2 + h * Math.sin(t * 3.3 + i) * 2.8 + otra * (i ? -1.5 : 1.5) + mira(i, t) * (i ? -5 : 5);
+  const salto = h * Math.abs(Math.sin(t * 5.5 + i)) * 4;
+  return {abre, ancho, giro, salto, cejas: cejas(i, t), resp: Math.sin(t * 1.7 + i * 1.3) * .004, parpadeo: parp(i, t)};
 }
-// Cámara: punto de la imagen (fx,fy) que va a la posición de pantalla (sx,sy) con escala s
+// --- Movimiento de cuerpo (en el mundo): desplazamiento, inclinación, estiramiento
+function cuerpo(i, t) {
+  let dx = 0, dy = 0, r = 0, sx = 1, sy = 1;
+  // entrada: salen de detrás de la mesa
+  const en = spring(t, .35 + i * .18, .8, 1.6, 4.5); dy += (1 - en) * 700;
+  // al hablar, botecito con estiramiento
+  const h = habla(i, t); const bt = Math.abs(Math.sin(t * 5.5 + i * 1.7)); dy -= h * bt * 10; sy += h * bt * .012; sx -= h * bt * .006;
+  r += Math.sin(t * 1.3 + i * 2.1) * .6 + h * Math.sin(t * 2.6 + i) * 1.2;
+  // asomarse: Aitana se mete en el plano de Elena y al revés
+  const asoA = e(t, 5.4, 5.7) * (1 - e(t, 6.4, 6.7)), asoE = e(t, 9.5, 9.8) * (1 - e(t, 10.4, 10.7));
+  if (i === 1) { dx -= asoA * 70; r -= asoA * 7; dy -= asoA * 20; } else { dx += asoE * 80; r += asoE * 7; }
+  // se acercan cuando hablan entre ellas
+  const cerca = e(t, 16.6, 17.0) * (1 - e(t, 19.5, 19.9)); dx += (i ? -1 : 1) * cerca * 28; r += (i ? -1 : 1) * cerca * 3.5;
+  // salto de las dos en «MARKA»
+  const sj = Math.sin(Math.PI * clamp((t - T_MARKA + .05 + i * .06) / .55)); dy -= sj * 120; sy += sj * .03;
+  // «que se mueva»: bailecito
+  const bai = e(t, PALt('mueva') - .1, PALt('mueva') + .1) * (1 - e(t, 25.0, 25.3)); r += bai * Math.sin(t * 14 + i * 3) * 4; dy -= bai * Math.abs(Math.sin(t * 14 + i)) * 26;
+  // CTA: se inclinan hacia cámara
+  const ct = e(t, 25.4, 26.0); sx += ct * .05; sy += ct * .05; r += (i ? -1 : 1) * ct * 2;
+  return {dx, dy, r, sx, sy};
+}
+const T_MARKA = PAL.filter(x => x[3] === 'MARKA').map(x => x[2])[0];
+const PALt = w => (PAL.find(x => x[3] === w) || [0, 0, 0])[2];
+const O = [-40, 520], KS = .95;
+function afin(P, b, cam) {
+  const c = Math.cos(b.r * g), s = Math.sin(b.r * g);
+  const m00 = c * b.sx, m01 = -s * b.sy, m10 = s * b.sx, m11 = c * b.sy;
+  const k = KS * cam.s, bx = P.base[0], by = P.base[1];
+  const wx = O[0] + KS * (bx - (m00 * bx + m01 * by)) + b.dx, wy = O[1] + KS * (by - (m10 * bx + m11 * by)) + b.dy;
+  return [k * m00, k * m10, k * m01, k * m11, cam.s * wx + cam.x, cam.s * wy + cam.y];
+}
+// --- Cámaras: punto del mundo (fx,fy) a la pantalla (sx,sy) con escala s
 const C = {
-  ancho: {s: .93, fx: 607, fy: 647.5, sx: 540, sy: 1318},
-  elena: {s: 1.75, fx: 425, fy: 255, sx: 520, sy: 840},
-  aitana: {s: 1.75, fx: 795, fy: 470, sx: 540, sy: 860},
-  elena2: {s: 2.15, fx: 430, fy: 265, sx: 540, sy: 860},
-  aitana2: {s: 2.15, fx: 790, fy: 475, sx: 540, sy: 880},
-  medio: {s: 1.22, fx: 610, fy: 400, sx: 540, sy: 930},
-  cta: {s: .8, fx: 607, fy: 1295, sx: 540, sy: 1920}
+  negro: {s: 1.12, fx: 540, fy: 900, sx: 540, sy: 960},
+  ancho: {s: 1, fx: 540, fy: 960, sx: 540, sy: 960},
+  elena: {s: 1.6, fx: 364, fy: 770, sx: 540, sy: 800},
+  aitana: {s: 1.6, fx: 712, fy: 966, sx: 540, sy: 820},
+  medio: {s: 1.28, fx: 540, fy: 1000, sx: 540, sy: 900},
+  cta: {s: 1.08, fx: 540, fy: 1050, sx: 540, sy: 1060}
 };
-const CAM = [[0, 'ancho'], [2.55, 'elena'], [6.75, 'aitana'], [10.85, 'elena2'], [12.4, 'aitana2'], [13.75, 'elena2'], [14.9, 'aitana2'], [16.55, 'medio'], [19.8, 'ancho'], [25.25, 'cta']];
+const CAM = [[0, 'negro'], [.3, 'ancho'], [2.55, 'elena'], [6.75, 'aitana'], [16.55, 'medio'], [19.8, 'ancho'], [25.25, 'cta']];
 function camara(t) {
   let i = 0; while (i + 1 < CAM.length && CAM[i + 1][0] <= t) i++;
-  const b = C[CAM[i][1]], a = i ? C[CAM[i - 1][1]] : b; const k = e(t, CAM[i][0], CAM[i][0] + .38);
+  const b = C[CAM[i][1]], a = i ? C[CAM[i - 1][1]] : b; const k = inOut(p(t, CAM[i][0], CAM[i][0] + .32));
   const mix = n => lerp(a[n], b[n], k);
-  const empuje = 1 + (t - CAM[i][0]) * .012;
-  const s = mix('s') * empuje;
-  return {s, x: mix('sx') - mix('fx') * s, y: mix('sy') - mix('fy') * s};
+  const s = mix('s') * (1 + (t - CAM[i][0]) * .01);
+  let x = mix('sx') - mix('fx') * s, y = mix('sy') - mix('fy') * s;
+  const sh = Math.max(0, 1 - Math.abs(t - T_MARKA - .1) / .3);
+  x += Math.sin(t * 90) * 14 * sh; y += Math.cos(t * 77) * 12 * sh;
+  const vel = k > 0 && k < 1 ? Math.sin(Math.PI * k) : 0;
+  return {s, x, y, blur: vel * 10};
 }
-// Subtítulos palabra a palabra
+// --- Subtítulos
 let lineaAct = -1;
-function subtitulos(t) {
+function subtitulos(t, mostrar) {
   let li = -1; LIN.forEach(([q, a, b], k) => { if (t >= a - .05 && t < b + .45) li = k; });
   const box = $('#subs'), qn = $('#quien b');
-  if (li !== lineaAct) {
-    lineaAct = li;
-    box.innerHTML = li < 0 ? '' : PAL.filter(w => w[0] === li).map(w => `<span data-t="${w[2]}">${w[3]}</span>`).join('');
-    qn.textContent = li < 0 ? '' : ({E: 'Elena', A: 'Aitana', B: 'Las dos'})[LIN[li][0]];
-  }
+  if (li !== lineaAct) { lineaAct = li; box.innerHTML = li < 0 ? '' : PAL.filter(w => w[0] === li).map(w => `<span data-t="${w[2]}">${w[3]}</span>`).join(''); qn.textContent = li < 0 ? '' : ({E: 'Elena', A: 'Aitana', B: 'Las dos'})[LIN[li][0]]; }
   const ws = [...box.children]; let act = -1;
-  ws.forEach((s, k) => { const ta = +s.dataset.t; const kk = e(t, ta - .02, ta + .14); set(s, {opacity: t < ta - .02 ? 0 : 1, transform: `translateY(${(1 - kk) * 18}px) scale(${lerp(.85, 1, kk)})`}); if (t >= ta) act = k; });
+  ws.forEach((s, k) => { const ta = +s.dataset.t; const kk = spring(t, ta - .02, .35, 1.6, 5); set(s, {opacity: t < ta - .02 ? 0 : 1, transform: `translateY(${(1 - Math.min(kk, 1.2)) * 20}px) scale(${lerp(.6, 1, Math.min(kk, 1.15))})`}); if (t >= ta) act = k; });
   ws.forEach((s, k) => s.classList.toggle('on', k === act));
-  const sh = li >= 0 && t < 25.2;
-  set($('#subs'), {opacity: sh ? 1 : 0}); set($('#quien'), {opacity: sh ? 1 : 0});
+  const sh = mostrar && li >= 0; set($('#subs'), {opacity: sh ? 1 : 0}); set($('#quien'), {opacity: sh ? 1 : 0});
 }
 function up(el, t, a, d = .45, dy = 50) { const k = e(t, a, a + d); set(el, {opacity: k, transform: `translateY(${(1 - k) * dy}px)`}); }
-function pop(el, t, a, b, rot) { const k = spring(t, a, .7, 1.6, 5); const o = t >= a && t < b ? 1 : 0; const out = e(t, b - .2, b); set(el, {opacity: o * (1 - out), transform: `rotate(${rot}deg) scale(${Math.max(0, k) * (1 - out * .3)})`}); }
-function rango(el, t, a, b) { const k = e(t, a, a + .3) * (1 - e(t, b - .25, b)); set(el, {opacity: k, transform: `translateY(${(1 - k) * -20}px)`}); }
+function pop(el, t, a, b, rot) { const k = spring(t, a, .6, 1.6, 4.5); const on = t >= a && t < b; const out = e(t, b - .15, b); set(el, {opacity: on ? 1 - out : 0, transform: `rotate(${rot + (1 - Math.min(1, k)) * 20}deg) scale(${Math.max(0, k) * (1 - out * .4)})`}); }
 
-// Timeline de edición
-let pi = ''; const CL = ['#F4F1EB', '#B7AEA4', '#D9D5CC'];
-for (let r = 0; r < 3; r++) for (let i = 0; i < 7; i++) pi += `<rect class="clip" data-r="${r}" data-i="${i}" y="${24 + r * 46}" height="34" rx="6" fill="${CL[r]}"/>`;
-$('#pistas').innerHTML = pi;
-$('#kTrazo').setAttribute('d', window.K_PATH); $('#kf').innerHTML = M.kSvg();
-const PALt = w => (PAL.find(x => x[3] === w) || [0, 0, 0])[2];
-const T_MARKA = PAL.filter(x => x[3] === 'MARKA').map(x => x[2])[0];
+// --- Construcción de piezas
+$('#lk').innerHTML = M.kSvg(); $('#ptk').innerHTML = M.kSvg(); $('#kf').innerHTML = M.kSvg(); $('#pk').innerHTML = M.kSvg();
+['#kMini', '#kGrande', '#kRelleno'].forEach(s => $(s).setAttribute('d', window.K_PATH));
+// libros en el estante
+let lb = ''; [[-60, 120, '#1A1A1A'], [-28, 150, '#F4F1EB'], [6, 110, '#B7AEA4'], [40, 135, '#1A1A1A'], [74, 100, '#F4F1EB'], [140, 70, '#B7AEA4']].forEach(([x, h, c]) => lb += `<div class="libro" style="left:${x}px;top:${760 - h}px;width:30px;height:${h}px;background:${c};border:3px solid #1A1A1A"></div>`);
+$('#libros').innerHTML = lb;
+// fotos que vuelan a la pared (trabajos)
+const FV = [['metal', 860, 900, -7], ['piedra', -10, 830, 6], ['macro', 900, 1080, 4]];
+$('#fotosVuelan').innerHTML = FV.map(([n, x, y, r], i) => `<div class="foto fv" style="left:${x}px;top:${y}px;width:170px;height:200px;background-image:url(../../img/${n}.webp)"><i class="chincheta"></i></div>`).join('');
+// confeti de K
+let cf = ''; for (let i = 0; i < 26; i++) cf += `<div class="confeti" data-i="${i}">${M.kSvg(i % 3 ? '#1A1A1A' : '#F4F1EB')}</div>`; $('#confetis').innerHTML = cf;
+// pistas de edición
+let p2 = ''; const CL = ['#F4F1EB', '#B7AEA4', '#D9D5CC']; for (let r = 0; r < 3; r++) for (let i = 0; i < 6; i++) p2 += `<div class="clip2" data-r="${r}" data-i="${i}" style="top:${r * 110}px;background:${CL[r]}"></div>`; $('#pistas2').innerHTML = p2;
+let co = ''; for (let i = 0; i < 8; i++) co += `<svg class="corazon" data-i="${i}" viewBox="0 0 60 56"><path d="M30 54 C10 38 0 28 0 16 C0 6 8 0 16 0 C23 0 28 4 30 9 C32 4 37 0 44 0 C52 0 60 6 60 16 C60 28 50 38 30 54Z" fill="currentColor"/></svg>`; $('#corazones').innerHTML = co;
+let ps = ''; const PC = ['#1A1A1A', '#D9D5CC', '#F4F1EB', '#1A1A1A', '#D9D5CC', '#F4F1EB']; for (let i = 0; i < 6; i++) ps += `<div class="pi" data-i="${i}" style="background:${PC[i]};border:4px solid #1A1A1A"></div>`; $('#pis').innerHTML = ps;
+
 window.DURACION = 31.6;
-let rig = null;
-window.LISTO = Muneca.crear($('#gl'), window.IMG_EA, P).then(r => { rig = r; window.render(0); });
+let esc = null, cE = null, cA = null;
+window.LISTO = (async () => { esc = await Muneca.escena($('#gl')); cE = await esc.capa(window.IMG_ELENA, PE); cA = await esc.capa(window.IMG_AITANA, PA); window.render(0); })();
+
+function mundo(t, cam) {
+  const tr = `translate(${cam.x}px,${cam.y}px) scale(${cam.s})`;
+  $('#mundo').style.transform = tr; $('#mesa').style.transform = tr;
+  const bl = cam.blur > .5 ? `blur(${cam.blur}px)` : 'none';
+  $('#mundo').style.filter = bl; $('#mesa').style.filter = bl; $('#gl').style.filter = bl;
+  // letrero: se enciende, brilla en MARKA, letras bailan en «que se mueva»
+  const enc = t < .3 ? 0 : (t < .55 ? (Math.floor(t * 40) % 2) : 1);
+  const bri = Math.max(0, 1 - Math.abs(t - T_MARKA - .15) / .6);
+  set($('#brilloL'), {opacity: enc * (.25 + bri * .75)});
+  $('#letrero').style.boxShadow = `0 24px 0 rgba(26,26,26,.18), 0 0 ${60 + bri * 120}px rgba(244,241,235,${.3 * enc + bri * .6})`;
+  const tm = PALt('mueva');
+  $$('#lt span').forEach((s, k) => { const j = Math.max(0, Math.sin(Math.PI * clamp((t - T_MARKA - k * .05) / .35))); const w = t > tm && t < 25.2 ? Math.abs(Math.sin((t - tm) * 12 - k * .8)) * 30 : 0; s.style.transform = `translateY(${-j * 40 - w}px) rotate(${t > tm && t < 25.2 ? Math.sin((t - tm) * 12 - k) * 8 : 0}deg)`; s.style.opacity = enc ? 1 : .25; });
+  $('#lk').style.transform = `rotate(${Math.sin(t * 1.4) * 4 + bri * 360}deg)`;
+  // reloj: el tiempo vuela
+  $('#hh').style.transform = `rotate(${t * 40}deg)`; $('#mm').style.transform = `rotate(${t * 480}deg)`;
+  // lámparas
+  const mov = t > tm && t < 25.2 ? 1 : 0;
+  $('#lam1').style.transform = `rotate(${Math.sin(t * 1.6) * 2 + mov * Math.sin(t * 9) * 8}deg)`; $('#lam2').style.transform = `rotate(${Math.sin(t * 1.4 + 1) * 2 + mov * Math.sin(t * 9 + 1) * 8}deg)`;
+  $('#tablon').style.transform = `rotate(${mov * Math.sin(t * 10) * 3}deg)`;
+  $('#hojas').style.transform = `rotate(${Math.sin(t * 1.8) * 3 + mov * Math.sin(t * 11) * 10}deg)`;
+  // vapor de las tazas
+  $$('.vp').forEach((v, k) => { v.style.transform = `translateY(${-((t * 30 + k * 20) % 30)}px)`; v.style.opacity = .5 + .3 * Math.sin(t * 3 + k); });
+  // tazas: brindis en MARKA
+  const br = Math.sin(Math.PI * clamp((t - T_MARKA + .25) / .7));
+  set($('#tE'), {transform: `translate(${br * 48}px,${-br * 60}px) rotate(${br * 18}deg)`}); set($('#tA'), {transform: `translate(${-br * 48}px,${-br * 60}px) rotate(${-br * 18}deg)`});
+  // portátil: se abre un poco cuando edita
+  $('#portatil').style.transform = `scaleY(${1 + Math.sin(t * 2) * .01})`;
+  $('#kMini').style.strokeDasharray = 1; $('#kMini').style.strokeDashoffset = 1 - (t % 3) / 3;
+  // papel y móvil cruzan la mesa; sellos «REVISADO»
+  const pp = e(t, 17.85, 18.4) * (1 - e(t, 19.6, 19.9)); set($('#papel'), {left: `${lerp(260, 650, pp)}px`, opacity: t > 17.7 && t < 19.9 ? 1 : 0});
+  const mp = e(t, 18.85, 19.35); set($('#movil'), {left: `${lerp(760, 300, mp)}px`, opacity: t > 18.7 && t < 19.9 ? 1 : 0});
+  const s1 = spring(t, 18.5, .5, 1.4, 5), s2 = spring(t, 19.4, .5, 1.4, 5);
+  set($('#sel1'), {opacity: t > 18.5 && t < 19.9 ? 1 : 0, transform: `rotate(-8deg) scale(${lerp(2.2, 1, Math.min(1, s1))})`});
+  set($('#sel2'), {opacity: t > 19.4 && t < 19.9 ? 1 : 0, transform: `rotate(6deg) scale(${lerp(2.2, 1, Math.min(1, s2))})`});
+  // confeti de K desde el letrero
+  $$('.confeti').forEach(c => { const i = +c.dataset.i; const d = t - T_MARKA; const on = d > 0 && d < 2.8;
+    const ang = (i * 137.5) % 360 * g, v = 500 + (i * 53) % 400; const x = 540 + Math.cos(ang) * v * d * .9, y = 280 + Math.sin(ang) * v * d * .5 - 700 * d + 900 * d * d;
+    set(c, {opacity: on ? 1 - clamp((d - 2.2) / .6) : 0, transform: `translate(${x}px,${y - 1300}px) rotate(${d * (200 + i * 40)}deg) scale(${.6 + (i % 4) * .25})`}); });
+  // fotos de trabajos que vuelan a la pared
+  $$('.fv').forEach((f, k) => { const a = PALt('parezca') - .4 + k * .25; const kk = spring(t, a, .7, 1.6, 4.5); const on = t > a;
+    set(f, {opacity: on ? 1 : 0, transform: `translate(${(1 - Math.min(kk, 1)) * (k % 2 ? -900 : 900)}px,${(1 - Math.min(kk, 1)) * -300}px) rotate(${FV[k][3] + (1 - Math.min(1, kk)) * 90 + (mov ? Math.sin(t * 10 + k) * 6 : 0)}deg)`}); });
+}
+
+function insercionTableta(t, a, b) {
+  const k = clamp((t - a) / (b - a));
+  const dib = inOut(clamp(k / .7));
+  const path = $('#kGrande'); path.style.strokeDasharray = 1; path.style.strokeDashoffset = 1 - dib;
+  $('#kRelleno').style.opacity = e(t, a + (b - a) * .7, a + (b - a) * .85);
+  // lápiz siguiendo el trazo
+  const L = path.getTotalLength ? path.getTotalLength() : 0;
+  let px = 540, py = 700;
+  if (L) { const pt = path.getPointAtLength(L * dib); const sc = 490 / 860; px = 110 + 34 + 150 + pt.x * sc; py = 330 + 34 + 150 + pt.y * sc; }
+  set($('#lapiz'), {transform: `translate(${px - 20}px,${py - 300}px) rotate(${28 + Math.sin(t * 20) * 3}deg)`, opacity: k < .72 ? 1 : 1 - e(t, a + (b - a) * .72, a + (b - a) * .8)});
+  $$('.swatch').forEach((s, i) => { const kk = spring(t, a + .35 + i * .08, .5, 1.6, 4.5); set(s, {transform: `translateY(${(1 - Math.min(kk, 1.1)) * -500}px) rotate(${(1 - Math.min(1, kk)) * 40}deg)`}); });
+  const tt = spring(t, a + (b - a) * .72, .45, 1.6, 4.5); set($('#tabTxt'), {opacity: t > a + (b - a) * .72 ? 1 : 0, transform: `scale(${Math.min(1.2, tt)})`});
+  set($('#tab2'), {transform: `scale(${lerp(.9, 1, e(t, a, a + .25))}) rotate(${lerp(-3, 0, e(t, a, a + .3))}deg)`});
+}
+function insercionPortatil(t, a, b) {
+  const k = clamp((t - a) / (b - a));
+  $$('.clip2').forEach(c => { const r = +c.dataset.r, i = +c.dataset.i; const st = a + .05 + (r * 6 + i) * .025; const kk = spring(t, st, .4, 1.6, 4.5);
+    const w = 90 + ((i * 37 + r * 19) % 70); set(c, {left: `${20 + i * 150}px`, width: `${w}px`, transform: `translateX(${(1 - Math.min(1, kk)) * 900}px)`}); });
+  $('#cabezal').style.left = `${30 + k * 840}px`;
+  const bk = Math.abs(Math.sin(t * 9)); set($('#pk'), {transform: `translateY(${-bk * 90}px) scale(${1 + (1 - bk) * .12},${1 - (1 - bk) * .1}) rotate(${Math.sin(t * 6) * 10}deg)`});
+  set($('#pvTxt'), {transform: `scale(${1 + Math.sin(t * 9) * .05})`});
+  const cx = lerp(700, 380, inOut(clamp(k * 1.6))), cy = lerp(1000, 820, inOut(clamp(k * 1.6))) + (k > .65 ? Math.sin((k - .65) * 30) * 10 : 0);
+  set($('#cursor'), {transform: `translate(${cx}px,${cy}px) scale(${k > .62 && k < .7 ? .85 : 1})`});
+  $$('.corazon').forEach(c => { const i = +c.dataset.i; const d = (t - a - .3 - i * .1); const on = d > 0; const yy = 640 - d * 600; set(c, {opacity: on ? clamp(1 - d / 1.1) : 0, transform: `translate(${560 + Math.sin(d * 6 + i) * 40 + i * 12}px,${yy}px) scale(${.6 + Math.min(1, d * 3) * .6})`}); });
+  set($('#pantalla'), {transform: `scale(${lerp(.92, 1, e(t, a, a + .25))})`});
+}
+// Opuestas: pantalla partida
+const OP = [[10.85, 'E'], [12.4, 'A'], [13.75, 'E'], [14.9, 'A'], [16.55, '']];
+function opuestas(t, cam2) {
+  let quien = 'E'; for (const [a, q] of OP) if (t >= a) quien = q;
+  const sp = 1080 * (quien === 'E' ? .6 : .4); let i = 0; while (i + 1 < OP.length && OP[i + 1][0] <= t) i++;
+  const prevSp = i ? 1080 * (OP[i - 1][1] === 'E' ? .6 : .4) : 540;
+  const k = inOut(p(t, OP[i][0], OP[i][0] + .3)); const W1 = Math.round(lerp(prevSp, sp, k));
+  set($('#opL'), {width: `${W1}px`}); set($('#opR'), {left: `${W1}px`, width: `${1080 - W1}px`});
+  set($('#opDiv'), {left: `${W1}px`}); set($('#vs'), {left: `${W1}px`, transform: `rotate(${Math.sin(t * 4) * 10}deg) scale(${1 + Math.sin(t * 8) * .05})`});
+  set($('#nomE'), {left: `${W1 / 2}px`, transform: `translateX(-50%) scale(${quien === 'E' ? 1.1 : .8})`, opacity: quien === 'E' ? 1 : .5});
+  set($('#nomA'), {left: `${W1 + (1080 - W1) / 2}px`, transform: `translateX(-50%) scale(${quien === 'A' ? 1.1 : .8})`, opacity: quien === 'A' ? 1 : .5});
+  // lista de Elena
+  ['#c1', '#c2', '#c3'].forEach((s, j) => { $(s).textContent = t > 11.1 + j * .35 ? '✓' : ''; });
+  set($('#lista'), {opacity: t < 12.4 || (t >= 13.75 && t < 14.9) ? 1 : .35, transform: `scale(${t < 12.4 ? 1 : .85})`, transformOrigin: '0 0'});
+  // post-its: explotan con Aitana, se ordenan con Elena, caen con «patas arriba»
+  $$('.pi').forEach(el => { const j = +el.dataset.i; let x, y, r;
+    const cx = W1 + (1080 - W1) / 2, ex = 2 * W1 / 3;
+    const sx = cx + Math.cos(j * 1.05) * 260, sy = 1520 + Math.sin(j * 1.3) * 200, sr = (j * 47) % 60 - 30;
+    const gx = W1 / 2 - 190 + (j % 3) * 130 - 40, gy = 1180 + Math.floor(j / 3) * 130, gr = 0;
+    const kb = spring(t, 12.55 + j * .05, .5, 1.6, 4.5), ko = e(t, 13.9 + j * .04, 14.3 + j * .04), kf = e(t, 15.6, 16.4);
+    x = lerp(cx, sx, Math.min(1.1, kb)); y = lerp(1500, sy, Math.min(1.1, kb)); r = sr * kb;
+    x = lerp(x, gx, ko); y = lerp(y, gy, ko); r = lerp(r, gr, ko);
+    y += kf * kf * 1400; r += kf * 200;
+    set(el, {opacity: t > 12.55 ? 1 : 0, transform: `translate(${x - 55}px,${y - 55}px) rotate(${r}deg)`}); });
+  // cámaras: cada una centrada en su mitad
+  const bE = cuerpo(0, t), bA = cuerpo(1, t);
+  const camE = {s: 1.5, x: W1 / 2 - 364 * 1.5, y: 1000 - 770 * 1.5}, camA = {s: 1.5, x: W1 + (1080 - W1) / 2 - 712 * 1.5, y: 1010 - 966 * 1.5};
+  esc.limpia();
+  esc.dibuja(cE, estado(0, t), afin(PE, bE, camE), [0, 0, W1, 1920]);
+  esc.dibuja(cA, estado(1, t), afin(PA, bA, camA), [W1, 0, 1080 - W1, 1920]);
+}
 
 window.render = function (t) {
   M.grano(t);
-  const enFin = t >= 29.0;
-  if (rig) rig.dibuja([estado(0, t), estado(1, t)], camara(t));
+  const enOp = t >= 10.85 && t < 16.55, enT = t >= 3.9 && t < 4.95, enL = t >= 8.05 && t < 9.15, enFin = t >= 29.0;
+  // giro de pantalla en «patas arriba»
+  const gi = inOut(p(t, 15.55, 15.9)) * (1 - inOut(p(t, 16.05, 16.4)));
+  $('#giro').style.transform = `rotate(${gi * 180}deg)`;
+  vis($('#opuB'), enOp); vis($('#opuF'), enOp); vis($('#insT'), enT); vis($('#insL'), enL); vis($('#fin'), enFin);
+  vis($('#mundo'), !enOp); vis($('#mesa'), !enOp);
+  const cam = camara(t);
+  if (esc) {
+    if (enOp) opuestas(t, cam);
+    else { mundo(t, cam); esc.limpia(); esc.dibuja(cE, estado(0, t), afin(PE, cuerpo(0, t), cam)); esc.dibuja(cA, estado(1, t), afin(PA, cuerpo(1, t), cam)); }
+  }
+  if (enT) insercionTableta(t, 3.9, 4.95);
+  if (enL) insercionPortatil(t, 8.05, 9.15);
   // gancho
-  const gk = t < 2.55; vis($('#g0'), gk); vis($('#g1'), gk); vis($('#g2'), gk);
-  if (gk) { set($('#g1'), {transform: `scale(${lerp(1.06, 1, e(t, 0, .4))})`}); up($('#g2'), t, .5, .35, 30); }
-  // flashes en cortes
-  let fl = 0; [2.55, 6.75, 16.55, 25.25, 29.0].forEach(c => { const d = t - c; if (d >= 0 && d < .14) fl = Math.max(fl, 1 - d / .14); });
-  $('#flash').style.opacity = fl * .55;
-  // Elena
-  rango($('#nE'), t, 2.6, 6.75);
+  const gk = 1 - e(t, .3, .55); set($('#oscuro'), {opacity: t < .3 ? 1 : (t < .55 ? (Math.floor(t * 40) % 2 ? .6 : .1) * (1 - e(t, .3, .55)) : 0)});
+  vis($('#gancho'), t < 2.55);
+  if (t < 2.55) {
+    const s1 = spring(t, 0, .4, 1.4, 5);
+    set($('#gancho'), {background: t < .3 ? '#1A1A1A' : 'transparent'});
+    const yG = lerp(0, 760, e(t, .3, .7)), sc = lerp(1, .55, e(t, .3, .7));
+    set($('#g1'), {transform: `translateY(${yG}px) scale(${sc * (t < .3 ? lerp(1.15, 1, Math.min(1, s1)) : 1)})`, color: '#F4F1EB', textShadow: '0 0 0 #000'});
+    set($('#g2'), {transform: `translateY(${yG - 70 * e(t, .3, .7)}px) scale(${sc})`, opacity: t < .12 ? 0 : 1});
+    set($('#g0'), {opacity: 1 - e(t, .3, .5)});
+    [$('#g1'), $('#g2')].forEach(x => x.style.webkitTextStroke = t > .3 ? '10px #1A1A1A' : '0'); [$('#g1'), $('#g2')].forEach(x => x.style.paintOrder = 'stroke fill');
+  }
+  // flashes en los cortes
+  let fl = 0; [.3, 2.55, 3.9, 4.95, 6.75, 8.05, 9.15, 10.85, 16.55, 25.25, 29.0].forEach(c => { const d = t - c; if (d >= 0 && d < .12) fl = Math.max(fl, 1 - d / .12); });
+  $('#flash').style.opacity = fl * .6;
+  // pegatinas
   pop($('#pE1'), t, PALt('Estrategia'), 6.75, -6); pop($('#pE2'), t, PALt('concepto'), 6.75, 5); pop($('#pE3'), t, PALt('identidad'), 6.75, -3);
-  const kd = e(t, 3.85, 4.9); set($('#kdib'), {opacity: t > 3.8 && t < 6.75 ? 1 : 0, transform: `rotate(${lerp(-10, 0, kd)}deg)`});
-  $('#kTrazo').style.strokeDasharray = 1; $('#kTrazo').style.strokeDashoffset = 1 - kd;
-  // Aitana
-  rango($('#nA'), t, 6.8, 10.85);
   pop($('#pA1'), t, PALt('Vídeo'), 10.85, 6); pop($('#pA2'), t, PALt('edición'), 10.85, -5); pop($('#pA3'), t, PALt('redes'), 10.85, 4);
-  const tlv = e(t, 8.0, 8.4) * (1 - e(t, 10.6, 10.85)); set($('#tl'), {opacity: tlv, transform: `translateY(${(1 - tlv) * -40}px)`});
-  $$('.clip').forEach(c => { const r = +c.dataset.r, i = +c.dataset.i; const w = 50 + ((i * 23 + r * 13) % 40); c.setAttribute('x', 30 + i * 82 + Math.sin(t * 2 + i + r) * 6); c.setAttribute('width', w); });
-  $('#cab').setAttribute('x', 30 + ((t - 8) * 160 % 560 + 560) % 560);
-  // opuestas: quién habla arriba
-  const op = t >= 10.85 && t < 16.55; const qE = op && ((t < 12.4) || (t >= 13.75 && t < 14.9)); const qA = op && !qE;
-  set($('#vE'), {opacity: qE ? 1 : 0}); set($('#vA'), {opacity: qA ? 1 : 0});
-  // revisado
-  pop($('#sE'), t, PALt('revisa') - .1, 19.8, -8); pop($('#sA'), t, PALt('otra'), 19.8, 6);
-  // MARKA gigante detrás
-  const mk = spring(t, T_MARKA, .8, 1.8, 5); const mOn = t >= T_MARKA && t < 25.25;
-  const mueve = t >= PALt('mueva') ? Math.sin((t - PALt('mueva')) * 14) * 6 * (1 - e(t, PALt('mueva'), PALt('mueva') + 1)) : 0;
-  set($('#gMarka'), {opacity: mOn ? 1 : 0, transform: `scale(${lerp(1.6, 1, clamp(mk, 0, 2))}) rotate(${mueve}deg)`});
-  subtitulos(t);
-  // CTA (las muñecas siguen abajo)
-  const ct = t >= 25.25 && t < 29.0; set($('#cta'), {display: ct ? '' : 'none', clipPath: `inset(0 0 ${lerp(100, 56, e(t, 25.25, 25.7))}% 0)`});
-  if (ct) { up($('#c1'), t, 25.4, .4, 40); up($('#c2'), t, 26.0, .45, 30); up($('#c3'), t, 26.6, .45, 20); up($('#c4'), t, 27.0, .45, 20); }
-  vis($('#fin'), enFin); vis($('#gl'), !enFin);
+  // cartel CTA que cae del techo
+  const cc = spring(t, 25.35, 1.2, 1.5, 3.2); set($('#cartel'), {opacity: t > 25.3 && !enFin ? 1 : 0, transform: `translateY(${Math.min(cc, 1.3) * 730}px) rotate(${(1 - Math.min(1, e(t, 25.35, 27))) * Math.sin(t * 7) * 6}deg)`});
+  up($('#sigue'), t, 26.7, .4, 30); if (t < 26.7 || enFin) $('#sigue').style.opacity = 0;
+  subtitulos(t, !enT && !enL && t < 25.25 && !(t < 2.55));
   if (enFin) { const k = spring(t, 29.0, 1.1, 1.8, 5); set($('#kf'), {transform: `scale(${lerp(2.4, 1, k)}) rotate(${lerp(-20, 0, k)}deg)`}); up($('#m1'), t, 29.45, .5, 40); up($('#m2'), t, 29.8, .5, 20); }
 };
 </script></body></html>
