@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Muñecas MARKA · prueba</title>
+<link rel="stylesheet" href="../motor/base.css">
+<style>
+body{background:var(--hueso)}
+.pal{position:absolute;left:0;right:0;text-align:center}
+#esc{position:absolute;inset:0;background:var(--hueso)}
+.pj{position:absolute;top:620px;width:440px;height:770px}
+#elena{left:60px} #aitana{left:580px}
+#mesa{position:absolute;left:0;right:0;top:1300px;height:620px;background:var(--carbon)}
+.bocadillo{position:absolute;top:300px;max-width:600px;background:var(--carbon);color:var(--hueso);padding:34px 42px;border-radius:36px;font-size:50px}
+#bE{left:70px;border-bottom-left-radius:6px} #bA{right:70px;border-bottom-right-radius:6px;text-align:right}
+#trabajo{position:absolute;left:240px;top:470px;width:600px;height:650px;background:#000;overflow:hidden;border:10px solid var(--carbon)}
+#trabajo img{width:100%;height:100%;object-fit:cover}
+#trabajo .et{position:absolute;left:24px;bottom:22px;color:var(--hueso)}
+#tl{position:absolute;left:640px;top:1380px;width:360px;height:180px}
+</style></head>
+<body><div class="lienzo">
+<div id="esc">
+  <div class="pal et" style="top:150px;color:#6b655e">Prueba · personajes provisionales</div>
+  <svg class="pj" id="elena" viewBox="0 0 440 770" aria-hidden="true"></svg>
+  <svg class="pj" id="aitana" viewBox="0 0 440 770" aria-hidden="true"></svg>
+  <div id="mesa"></div>
+  <!-- tableta de Elena con la K que se dibuja -->
+  <svg class="abs" id="tab" style="left:120px;top:1360px" width="380" height="250" viewBox="0 0 380 250" aria-hidden="true">
+    <rect x="0" y="0" width="380" height="250" rx="22" fill="#F4F1EB"/>
+    <g transform="translate(130,40) scale(.2)"><path id="kd" fill="none" stroke="#1A1A1A" stroke-width="22" pathLength="1"/></g>
+  </svg>
+  <!-- portátil de Aitana con timeline -->
+  <svg id="tl" viewBox="0 0 360 180" aria-hidden="true">
+    <rect x="0" y="0" width="360" height="180" rx="18" fill="#D9D5CC"/>
+    <g id="pistas"></g>
+    <rect id="cab" x="40" y="20" width="5" height="140" fill="#1A1A1A"/>
+  </svg>
+  <div class="abs" id="pk" style="left:440px;top:1660px;width:90px;height:91px;color:var(--hueso)"></div><div class="abs d" style="left:550px;top:1680px;font-size:56px;letter-spacing:.12em;color:var(--hueso)">MARKA</div>
+  <div class="bocadillo b" id="bE"></div>
+  <div class="bocadillo b" id="bA"></div>
+  <div id="trabajo"><img src="../../img/escultura.webp" alt=""><div class="et">Trabajo real · Brand Kit MARKA</div></div>
+</div>
+<div id="grano" style="opacity:.08"></div>
+</div>
+<script src="../motor/k-path.js"></script><script src="../motor/motor.js"></script>
+<script>
+const {e, lerp, spring, $, set, clamp} = M;
+$('#kd').setAttribute('d', window.K_PATH); $('#pk').innerHTML = M.kSvg();
+// Pistas de edición
+let pi = ''; const C = ['#1A1A1A','#B7AEA4','#F4F1EB'];
+for (let r = 0; r < 3; r++) for (let i = 0; i < 6; i++) pi += `<rect class="clip" data-r="${r}" data-i="${i}" y="${30 + r * 45}" height="32" rx="6" fill="${C[r]}" stroke="#1A1A1A" stroke-width="${r === 2 ? 3 : 0}"/>`;
+$('#pistas').innerHTML = pi;
+
+// Personaje: piezas separadas para animar (cabeza, ojos, bocas, brazo)
+function personaje(id, o) {
+  const pelo = o.pelo === 'largo'
+    ? `<path d="M80 250 Q70 90 220 80 Q370 90 360 250 L372 470 Q330 500 300 470 L300 250 Q220 170 140 250 L140 470 Q110 500 68 470 Z" fill="#1A1A1A"/>`
+    : `<circle cx="220" cy="82" r="62" fill="#B7AEA4" stroke="#1A1A1A" stroke-width="6"/><path d="M92 250 Q90 110 220 105 Q350 110 348 250 Q300 180 220 175 Q140 180 92 250 Z" fill="#B7AEA4" stroke="#1A1A1A" stroke-width="6"/>`;
+  $(id).innerHTML = `
+  <g class="cuerpo"><path d="M60 770 Q60 520 220 500 Q380 520 380 770 Z" fill="${o.ropa}" stroke="#1A1A1A" stroke-width="6"/></g>
+  <g class="brazo" style="transform-origin:${o.hombro}px 580px"><path d="M${o.hombro} 570 Q${o.hombro + o.dir * 40} 680 ${o.hombro + o.dir * 110} 720" fill="none" stroke="#1A1A1A" stroke-width="38" stroke-linecap="round"/><path d="M${o.hombro} 570 Q${o.hombro + o.dir * 40} 680 ${o.hombro + o.dir * 110} 720" fill="none" stroke="${o.ropa}" stroke-width="26" stroke-linecap="round"/></g>
+  <g class="cabeza" style="transform-origin:220px 480px">
+    <rect x="190" y="400" width="60" height="110" fill="#D9D5CC" stroke="#1A1A1A" stroke-width="6"/>
+    ${o.pelo === 'largo' ? pelo : ''}
+    <ellipse cx="220" cy="280" rx="130" ry="150" fill="#D9D5CC" stroke="#1A1A1A" stroke-width="6"/>
+    ${o.pelo !== 'largo' ? pelo : `<path d="M90 250 Q100 120 220 115 Q300 118 340 190 Q260 150 200 200 Q150 240 90 250 Z" fill="#1A1A1A"/>`}
+    <g class="ojos"><ellipse class="ojo" cx="172" cy="290" rx="13" ry="17" fill="#1A1A1A" style="transform-origin:172px 290px"/><ellipse class="ojo" cx="268" cy="290" rx="13" ry="17" fill="#1A1A1A" style="transform-origin:268px 290px"/></g>
+    <path d="M150 255 Q172 245 194 255" stroke="#1A1A1A" stroke-width="6" fill="none" class="ceja"/>
+    <path d="M246 255 Q268 245 290 255" stroke="#1A1A1A" stroke-width="6" fill="none" class="ceja"/>
+    <g class="bocas" transform="translate(220 360)">
+      <path data-v="M" d="M-30 0 Q0 14 30 0" stroke="#1A1A1A" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path data-v="A" d="M-28 -6 Q0 -10 28 -6 Q20 40 0 42 Q-20 40 -28 -6 Z" fill="#1A1A1A"/>
+      <path data-v="E" d="M-34 -4 Q0 -8 34 -4 Q18 22 0 22 Q-18 22 -34 -4 Z" fill="#1A1A1A"/>
+      <ellipse data-v="O" cx="0" cy="8" rx="17" ry="24" fill="#1A1A1A"/>
+    </g>
+  </g>`;
+}
+personaje('#elena', {pelo:'largo', ropa:'#1A1A1A', hombro:300, dir:-1});
+personaje('#aitana', {pelo:'mono', ropa:'#F4F1EB', hombro:140, dir:1});
+
+// Guion: [quién, inicio, fin, texto]
+const G = [
+  ['E', .4, 2.3, 'Hola, somos MARKA.'],
+  ['A', 2.5, 4.6, 'Bueno, nuestras versiones animadas.'],
+  ['E', 4.8, 7.4, 'Nosotras trabajamos. Ellas dan la cara.'],
+  ['A', 7.6, 10.2, 'Aquí vais a ver trabajos reales.'],
+  ['E', 10.4, 12.9, 'Markas de verdad, contadas por nosotras.'],
+  ['A', 13.1, 14.8, 'Síguenos.'],
+];
+window.DURACION = 16.5;
+// Boca según la letra que toca (sincronía aproximada por texto; con voz real se usa el audio)
+function vis(txt, k) {
+  const s = txt.replace(/[^a-záéíóúñ ]/gi, '').toLowerCase(); const c = s[Math.floor(k * s.length)] || ' ';
+  if ('aá'.includes(c)) return 'A'; if ('eéií'.includes(c)) return 'E'; if ('oóuú'.includes(c)) return 'O';
+  if ('mbp '.includes(c)) return 'M'; return 'E';
+}
+function anima(id, quien, t) {
+  const el = $(id); const g = G.find(x => x[0] === quien && t >= x[1] && t < x[2]);
+  let v = 'M';
+  if (g) { const k = (t - g[1]) / (g[2] - g[1]); v = vis(g[3], k); if (Math.floor(t * 12) % 4 === 3) v = 'M'; }
+  el.querySelectorAll('.bocas > *').forEach(b => b.style.display = b.dataset.v === v ? '' : 'none');
+  // parpadeo cada ~3 s, desfasado
+  const ph = (t + (quien === 'A' ? 1.3 : 0)) % 3.1; const bl = ph < .12 ? .1 : 1;
+  el.querySelectorAll('.ojo').forEach(o => o.style.transform = `scaleY(${bl})`);
+  const habla = !!g;
+  const cab = el.querySelector('.cabeza');
+  cab.style.transform = `rotate(${Math.sin(t * (habla ? 5 : 1.4)) * (habla ? 3.5 : 1.2)}deg) translateY(${habla ? Math.abs(Math.sin(t * 6)) * -8 : 0}px)`;
+  el.querySelector('.cuerpo').style.transform = `translateY(${Math.sin(t * 2 + (quien === 'A' ? 1 : 0)) * 4}px)`;
+  el.querySelectorAll('.ceja').forEach(c => c.style.transform = `translateY(${habla ? Math.sin(t * 4) * -4 - 3 : 0}px)`);
+  // brazo: trabaja cuando calla, gesticula cuando habla
+  const br = el.querySelector('.brazo');
+  br.style.transform = habla ? `rotate(${Math.sin(t * 4) * 14 + (quien === 'E' ? 18 : -18)}deg)` : `rotate(${Math.sin(t * 9) * 4}deg)`;
+}
+window.render = function (t) {
+  M.grano(t);
+  anima('#elena', 'E', t); anima('#aitana', 'A', t);
+  // entrada de los personajes
+  const ent = spring(t, 0, .9, 1.4, 5);
+  $('#elena').style.transform = `translateY(${(1 - ent) * 500}px)`;
+  $('#aitana').style.transform = `translateY(${(1 - spring(t, .15, .9, 1.4, 5)) * 500}px)`;
+  // bocadillos
+  [['#bE','E'],['#bA','A']].forEach(([s, q]) => {
+    const g = G.find(x => x[0] === q && t >= x[1] - .05 && t < x[2] + .3);
+    const b = $(s);
+    if (g) { b.textContent = g[3]; const k = e(t, g[1] - .05, g[1] + .25); set(b, {opacity: k, transform: `scale(${lerp(.7, 1, k)})`, transformOrigin: q === 'E' ? '0 100%' : '100% 100%'}); }
+    else b.style.opacity = 0;
+  });
+  // Elena dibuja la K
+  $('#kd').style.strokeDashoffset = 1 - (t % 6) / 6; $('#kd').style.strokeDasharray = 1;
+  // Aitana edita: clips que se recolocan y cabezal que corre
+  document.querySelectorAll('.clip').forEach(c => {
+    const r = +c.dataset.r, i = +c.dataset.i; const w = 34 + ((i * 17 + r * 11) % 30);
+    const x = 30 + i * 52 + Math.sin(t * 1.5 + i + r) * 4; c.setAttribute('x', x); c.setAttribute('width', w);
+  });
+  $('#cab').setAttribute('x', 30 + ((t * 70) % 300));
+  // el trabajo real aparece cuando lo nombran
+  const tw = e(t, 8.2, 8.7) * (1 - e(t, 12.9, 13.3));
+  set($('#trabajo'), {opacity: tw, transform: `translateY(${(1 - tw) * 80}px) rotate(${lerp(-4, -1.5, tw)}deg)`});
+};
+window.render(0);
+</script></body></html>
