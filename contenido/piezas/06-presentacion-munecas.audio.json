@@ -1,0 +1,9 @@
+{"duracion":31.6,"bpm":118,"inicio":0.3,"fin":28.9,"final":29.0,
+ "efectos":[["click",0.3],["click",0.4],["click",0.47],["pop",0.6],["pop",0.78],
+  ["whoosh",2.55],["pop",5.0],["pop",5.6],["pop",6.1],["whoosh",3.9],["brillo",4.6,0.6],["whoosh",4.95],
+  ["pop",5.45],["whoosh",6.75],["whoosh",8.05],["teclas",8.1,1.0],["click",8.75],["whoosh",9.15],
+  ["pop",9.25],["pop",9.75],["pop",10.4],["whoosh",10.85],["click",11.1],["click",11.45],["click",11.8],
+  ["whoosh",12.4],["pop",12.55],["pop",12.65],["pop",12.75],["whoosh",13.75],["click",13.95],["click",14.05],["click",14.15],
+  ["whoosh",14.9],["vuelta",15.5],["vuelta",16.0],["whoosh",16.55],["whoosh",17.85],["sello",18.5],["whoosh",18.85],["sello",19.4],
+  ["whoosh",19.8],["choque",21.3],["brillo",21.3],["sello",21.28,0.8],["pop",21.75],["pop",22.0],["pop",22.25],
+  ["whoosh",25.25],["sello",26.3,0.7],["pop",26.7]]}

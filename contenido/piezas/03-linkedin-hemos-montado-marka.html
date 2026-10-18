@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Hemos montado MARKA</title>
+<link rel="stylesheet" href="../motor/base.css">
+<style>
+@page{size:1080px 1350px;margin:0}
+html,body{width:1080px;height:auto;overflow:visible}
+.pag{position:relative;width:1080px;height:1350px;overflow:hidden;page-break-after:always;padding:110px 100px}
+.osc{background:var(--carbon);color:var(--hueso)} .cla{background:var(--hueso);color:var(--carbon)} .are{background:var(--arena);color:var(--carbon)}
+.n{position:absolute;left:100px;bottom:90px} .m{position:absolute;right:100px;bottom:90px}
+.k{position:absolute;color:currentColor}
+h2{font-size:150px;margin-top:40px} p{font-size:46px;margin-top:40px;max-width:820px}
+.lista{margin-top:50px;font-size:44px;line-height:1.3}
+.lista div{border-top:2px solid currentColor;padding:18px 0;display:flex;justify-content:space-between}
+.lista span{opacity:.6;font-size:30px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+.duo{display:flex;gap:40px;margin-top:70px}.duo>div{flex:1;border:2px solid currentColor;padding:44px}
+.duo h3{font-size:84px}
+</style></head>
+<body>
+<section class="pag osc">
+  <div class="et" style="color:var(--piedra)">Estudio creativo · Madrid</div>
+  <div class="k" id="k1" style="right:90px;top:300px;width:420px;height:422px"></div>
+  <h2 class="d" style="margin-top:640px">HEMOS<br>MONTADO<br>MARKA.</h2>
+  <div class="et n" style="color:var(--piedra)">01 / 05</div><div class="et m" style="color:var(--piedra)">Desliza →</div>
+</section>
+<section class="pag cla">
+  <div class="et" style="color:#6b655e">El problema</div>
+  <h2 class="d" style="font-size:120px">MARKA Y CONTENIDO VAN POR SEPARADO.</h2>
+  <p class="b">Un logo bonito que luego no se parece a nada en redes.</p>
+  <p class="b">O vídeos buenos de markas que nadie sabe quiénes son.</p>
+  <div class="et n" style="color:#6b655e">02 / 05</div>
+</section>
+<section class="pag osc">
+  <div class="et" style="color:var(--piedra)">Qué hacemos</div>
+  <h2 class="d" style="font-size:120px">MARKA Y CONTENIDO EN UN SOLO EQUIPO.</h2>
+  <div class="lista b">
+    <div>Branding y Brand Book <span>Marka</span></div>
+    <div>Identidad de redes <span>Redes</span></div>
+    <div>Edición de vídeo <span>Vídeo</span></div>
+    <div>Campañas creativas <span>Campañas</span></div>
+    <div>Estrategia creativa <span>Estrategia</span></div>
+  </div>
+  <div class="et n" style="color:var(--piedra)">03 / 05</div>
+</section>
+<section class="pag are">
+  <div class="et" style="color:#5f5951">Quiénes somos</div>
+  <h2 class="d" style="font-size:120px">SOMOS DOS.</h2>
+  <div class="duo b">
+    <div><div class="et">Elena</div><h3 class="d" style="margin-top:30px">PIENSA LA MARKA</h3><p style="font-size:38px">Branding, estrategia y concepto.</p></div>
+    <div><div class="et">Aitana</div><h3 class="d" style="margin-top:30px">LA PONE A MOVERSE</h3><p style="font-size:38px">Edición, producción y redes.</p></div>
+  </div>
+  <p class="b" style="font-size:40px">Todo lo que hace una lo revisa la otra antes de que llegue al cliente.</p>
+  <div class="et n" style="color:#5f5951">04 / 05</div>
+</section>
+<section class="pag osc">
+  <div class="k" id="k2" style="left:100px;top:150px;width:240px;height:241px"></div>
+  <h2 class="d" style="margin-top:380px;font-size:130px">¿TU MARKA NO SE PARECE A TI?</h2>
+  <p class="b">Escríbenos. Te contamos qué cambiaríamos, aunque no acabemos trabajando juntas.</p>
+  <div class="et" style="margin-top:80px;color:var(--piedra)">markaestudio.app</div>
+  <div class="et n" style="color:var(--piedra)">05 / 05</div><div class="et m" style="color:var(--piedra)">Ideas que toman forma</div>
+</section>
+<div id="grano" style="position:fixed"></div>
+<script src="../motor/k-path.js"></script><script src="../motor/motor.js"></script>
+<script>['#k1','#k2'].forEach(s=>M.$(s).innerHTML=M.kSvg());</script>
+</body></html>
