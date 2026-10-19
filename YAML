@@ -1,0 +1,30 @@
+name: Generate brandbook (Claude)
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  generate:
+    if: contains(github.event.label.name, 'brandbook')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install deps
+        run: npm ci
+        working-directory: .github/ai-scripts
+        # (create package.json with node-fetch or '@anthropic/sdk' as needed)
+
+      - name: Generate brandbook with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node .github/ai-scripts/generate-brandbook.mjs "${{ github.repository }}" "${{ github.event.issue.number }}"
