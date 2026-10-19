@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#D9D5CC}</style></head><body>
+<svg id="s" width="1080" height="1920" viewBox="0 0 1080 1920"></svg>
+<script src="../motor/personajes.js"></script>
+<script>
+const poses=[
+ [{x:330,y:1880,s:.95},{x:780,y:1880,s:.95}],
+ [{x:330,y:1880,s:.95,cabeza:-8,mira:[.8,-.3],boca:{abre:.8,sonrisa:.5},brazoD:[120,30],manoD:'abierta',cejas:[1,1]},{x:780,y:1880,s:.95,cabeza:8,mira:[-.8,-.5],enfado:1,boca:{abre:.3,sonrisa:-.4},brazoI:[40,100],brazoD:[40,100]}],
+ [{x:330,y:1880,s:.95,parpadeo:1,boca:{abre:0,sonrisa:1},rubor:1,brazoI:[160,10],brazoD:[160,10],manoI:'abierta',manoD:'abierta',aplasta:.05},{x:780,y:1880,s:.95,boca:{abre:1,o:1},mira:[0,-1],cejas:[1,1],brazoD:[100,-60],manoD:'dedo',giro:-6}],
+];
+window.render=t=>{document.getElementById('s').innerHTML=poses[t].map((q,i)=>Personajes.svg(i?'aitana':'elena',q)).join('')};
+window.DURACION=1;
+</script></body></html>
