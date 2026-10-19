@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Primero entendemos. Después diseñamos.</title>
+<link rel="stylesheet" href="../motor/base.css">
+<style>
+.k{position:absolute;color:var(--hueso)}
+.pal{position:absolute;left:0;right:0;text-align:center}
+.linea{position:absolute;left:90px;right:90px}
+.carta{position:absolute;left:140px;top:380px;width:800px;height:900px;overflow:hidden;background:#000}
+.carta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.chip{display:inline-block;border:2px solid var(--carbon);padding:18px 34px;border-radius:999px;margin:10px}
+.num{font-size:44px;color:var(--piedra)}
+</style></head>
+<body><div class="lienzo">
+
+<!-- 1 · gancho -->
+<section class="esc" id="s1">
+  <div class="pal d" id="s1a" style="top:640px;font-size:170px">PRIMERO</div>
+  <div class="pal d" id="s1b" style="top:800px;font-size:170px">ENTENDEMOS.</div>
+  <div class="pal et" id="s1c" style="top:1100px;color:var(--piedra)">Así trabajamos</div>
+</section>
+
+<!-- 2 · escuchamos -->
+<section class="esc" id="s2">
+  <div class="linea et num" id="s2n" style="top:300px">01 · Escuchamos</div>
+  <div class="linea d" id="s2a" style="top:480px;font-size:128px">¿QUIÉN ERES?</div>
+  <div class="linea d" id="s2b" style="top:760px;font-size:128px">¿QUÉ QUIERES?</div>
+  <div class="linea d" id="s2c" style="top:1040px;font-size:128px">¿A QUIÉN LE HABLAS?</div>
+</section>
+
+<!-- 3 · entendemos -->
+<section class="esc" id="s3" style="background:var(--arena);color:var(--carbon)">
+  <svg class="abs" id="s3g" width="1080" height="1920" style="left:0;top:0" aria-hidden="true"></svg>
+  <div class="linea et num" id="s3n" style="top:300px;color:#6b655e">02 · Entendemos</div>
+  <div class="k" id="s3k" style="left:330px;top:640px;width:420px;height:423px;color:var(--carbon)"></div>
+  <div class="pal d" id="s3a" style="top:1180px;font-size:130px">UNA IDEA.</div>
+  <div class="pal d" id="s3b" style="top:1320px;font-size:130px">CLARA.</div>
+</section>
+
+<!-- 4 · después diseñamos -->
+<section class="esc" id="s4" style="background:var(--hueso);color:var(--carbon)">
+  <div class="pal d" id="s4a" style="top:700px;font-size:170px">DESPUÉS</div>
+  <div class="pal d" id="s4b" style="top:860px;font-size:170px">DISEÑAMOS.</div>
+</section>
+
+<!-- 5 · diseñamos -->
+<section class="esc" id="s5">
+  <div class="linea et num" id="s5n" style="top:240px">03 · Diseñamos</div>
+  <div class="carta" id="s5c"><img id="s5i" alt=""></div>
+  <div class="pal d" id="s5w" style="top:1350px;font-size:170px"></div>
+  <div class="pal et" id="s5m" style="top:1580px;color:var(--piedra)"></div>
+</section>
+
+<!-- 6 · entregamos -->
+<section class="esc" id="s6" style="background:var(--hueso);color:var(--carbon)">
+  <div class="linea et num" id="s6n" style="top:300px;color:#6b655e">04 · Entregamos</div>
+  <div class="pal d" id="s6a" style="top:470px;font-size:130px">UNA MARKA<br>QUE SE<br>RECONOCE.</div>
+  <div class="pal et" id="s6c" style="top:1150px;color:var(--carbon)"><span class="chip c">Brand book</span><span class="chip c">Redes</span><br><span class="chip c">Vídeo</span><span class="chip c">Campañas</span></div>
+</section>
+
+<!-- 7 · cierre -->
+<section class="esc" id="s7">
+  <div class="k" id="s7k" style="left:340px;top:480px;width:400px;height:402px"></div>
+  <div class="pal d" id="s7a" style="top:980px;font-size:120px;letter-spacing:.12em">MARKA</div>
+  <div class="pal d" id="s7b" style="top:1130px;font-size:64px">LA FORMA ES LA MARKA.</div>
+  <div class="pal et" id="s7c" style="top:1280px;color:var(--piedra)">markaestudio.app</div>
+</section>
+
+<div id="flash" class="esc" style="background:var(--hueso);opacity:0;z-index:50"></div>
+<div id="grano"></div>
+</div>
+<script src="../motor/k-path.js"></script>
+<script src="../motor/motor.js"></script>
+<script>
+const {e, p, lerp, spring, vis, $, set, clamp} = M;
+window.DURACION = 30;
+['#s3k','#s7k'].forEach(s => $(s).innerHTML = M.kSvg());
+$$ = M.$$;
+document.querySelectorAll('.c').forEach(c => c.style.opacity = 0);
+const MAT = [['IDENTIDAD','escultura','Piedra'],['SISTEMA','metal','Metal'],['MOVIMIENTO','luz','Luz'],['DETALLE','macro','Textura']];
+MAT.forEach(m => { const i = new Image(); i.src = `../../img/${m[1]}.webp`; });
+// Rejilla de construcción que se dibuja
+let g = '';
+for (let i = 0; i < 10; i++) g += `<line x1="${i*120+60}" y1="0" x2="${i*120+60}" y2="1920" stroke="#1A1A1A" stroke-opacity=".08" stroke-width="2" class="gl" pathLength="1"/>`;
+g += `<circle cx="540" cy="851" r="300" fill="none" stroke="#1A1A1A" stroke-width="4" pathLength="1" id="gc"/>`;
+$('#s3g').innerHTML = g;
+
+function stamp(el, t, a, from = 1.6) {
+  const k = e(t, a, a + .32);
+  set(el, {opacity: t < a ? 0 : 1, transform: `scale(${lerp(from, 1, k)})`});
+}
+function up(el, t, a, d = .5, dy = 60) {
+  const k = e(t, a, a + d);
+  set(el, {opacity: k, transform: `translateY(${(1 - k) * dy}px)`});
+}
+
+window.render = function (t) {
+  M.grano(t);
+  const S = id => $(id);
+  vis(S('#s1'), t < 3.5); vis(S('#s2'), t >= 3.5 && t < 10); vis(S('#s3'), t >= 10 && t < 15);
+  vis(S('#s4'), t >= 15 && t < 18.5); vis(S('#s5'), t >= 18.5 && t < 23.5);
+  vis(S('#s6'), t >= 23.5 && t < 27.5); vis(S('#s7'), t >= 27.5);
+  const cuts = [3.5, 10, 15, 18.5, 23.5, 27.5];
+  let fl = 0; cuts.forEach(c => { const d = t - c; if (d >= 0 && d < .18) fl = Math.max(fl, 1 - d / .18); });
+  S('#flash').style.opacity = fl * .85;
+
+  if (t < 3.5) {
+    stamp(S('#s1a'), t, .5, 1.5); stamp(S('#s1b'), t, 1.0, 1.8); up(S('#s1c'), t, 1.9, .5, 30);
+    const o = e(t, 3.2, 3.5);
+    S('#s1').style.opacity = 1 - o;
+  }
+  if (t >= 3.5 && t < 10) {
+    up(S('#s2n'), t, 3.6, .4, 30);
+    up(S('#s2a'), t, 4.4); up(S('#s2b'), t, 6.0); up(S('#s2c'), t, 7.6);
+    [['#s2a', 6.0], ['#s2b', 7.6]].forEach(([s, n]) => { if (t > n) S(s).style.opacity = .3; });
+  }
+  if (t >= 10 && t < 15) {
+    document.querySelectorAll('.gl').forEach((l, n) => { l.style.strokeDasharray = 1; l.style.strokeDashoffset = 1 - e(t, 10.1 + n * .05, 11 + n * .05); });
+    const c = S('#gc'); c.style.strokeDasharray = 1; c.style.strokeDashoffset = 1 - e(t, 10.6, 12);
+    up(S('#s3n'), t, 10.1, .4, 30);
+    const kk = spring(t, 11.2, 1.1, 1.6, 4.5);
+    set(S('#s3k'), {transform: `scale(${lerp(.2, 1, kk)}) rotate(${lerp(-60, 0, kk)}deg)`, opacity: clamp((t - 11.2) * 6)});
+    stamp(S('#s3a'), t, 12.6, 1.4); stamp(S('#s3b'), t, 13.4, 1.6);
+  }
+  if (t >= 15 && t < 18.5) {
+    stamp(S('#s4a'), t, 15.1, 1.5); stamp(S('#s4b'), t, 15.7, 1.8);
+    const o = e(t, 18.2, 18.5);
+    S('#s4').style.transform = `translateY(${-o * 1920}px)`;
+  }
+  if (t >= 18.5 && t < 23.5) {
+    up(S('#s5n'), t, 18.55, .4, 30);
+    const i = Math.min(MAT.length - 1, Math.floor((t - 18.6) / 1.2)); const t0 = 18.6 + i * 1.2;
+    const m = MAT[Math.max(0, i)];
+    const img = S('#s5i'); const src = `../../img/${m[1]}.webp`; if (!img.src.endsWith(src.slice(5))) img.src = src;
+    img.style.transform = `scale(${lerp(1.18, 1.04, e(t, t0, t0 + 1.2))})`;
+    S('#s5w').textContent = m[0]; stamp(S('#s5w'), t, t0, 1.3);
+    S('#s5m').textContent = m[2];
+    const ci = e(t, 18.6, 19);
+    S('#s5c').style.clipPath = `inset(${(1 - ci) * 50}% 0 ${(1 - ci) * 50}% 0)`;
+  }
+  if (t >= 23.5 && t < 27.5) {
+    up(S('#s6n'), t, 23.6, .4, 30); up(S('#s6a'), t, 24.0, .6, 60);
+    document.querySelectorAll('.c').forEach((c, n) => { const k = e(t, 25.2 + n * .25, 25.7 + n * .25); set(c, {opacity: k, transform: `translateY(${(1 - k) * 40}px)`}); });
+  }
+  if (t >= 27.5) {
+    const k = spring(t, 27.5, 1.1, 1.8, 5);
+    set(S('#s7k'), {transform: `scale(${lerp(2.6, 1, k)}) rotate(${lerp(25, 0, k)}deg)`, opacity: clamp((t - 27.5) * 5)});
+    up(S('#s7a'), t, 28.0, .6, 40); up(S('#s7b'), t, 28.4, .5, 30); up(S('#s7c'), t, 28.9, .5, 20);
+  }
+};
+window.render(0);
+</script>
+</body></html>
